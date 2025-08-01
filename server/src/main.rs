@@ -1,11 +1,36 @@
 use std::io;
 
-use actix_web::{App, HttpServer};
+use actix_web::{get, web, App, HttpServer};
+
+#[get("/podcast-{url}")]
+async fn get_podcast(path: web::Path<String>) -> actix_web::Result<String> {
+    let url = path.into_inner();
+    let restructured_url = url.chars()
+        .map(|char| if char == ':' { '/' } else { char })
+        .collect::<String>();
+
+    match reqwest::get(format!("https://{restructured_url}")).await {
+        Ok(response) => {
+            match response.text().await {
+                Ok(content) => {
+                    Ok(content)
+                },
+                Err(error) => {
+                    panic!("Incorrect url {error}");
+                },
+            }
+        },
+        Err(error) => {
+            panic!("Incorrect url {error}");
+        },
+    }
+}
 
 #[actix_web::main]
 async fn main() -> io::Result<()> {
     HttpServer::new(|| {
         App::new()
+            .service(get_podcast)
             .service(
                 actix_files::Files::new("/", "../dist")
                     .index_file("index.html")
