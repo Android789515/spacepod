@@ -33,7 +33,12 @@ export const Podcasts = ({ podcastsState, currentPodcastState }: Props) => {
   const [ podcastsURL, setPodcastsURL ] = useState('');
 
   const fetchPodcasts = async () => {
-    const destination = podcastsURL.split('https://')[ 1 ];
+    const slashIndicator = ':';
+
+    const destination = podcastsURL.split('https://')[ 1 ]
+      .split('')
+      .map(char => char === '/' ? slashIndicator : char)
+      .join('');
 
     const isDev = import.meta.env.DEV;
     const hostname = isDev ? 'http://localhost:8080' : `${import.meta.env.VITE_SERVER_ADDRESS}`;
