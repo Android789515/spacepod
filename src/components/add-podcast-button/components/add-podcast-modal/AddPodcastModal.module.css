@@ -1,0 +1,14 @@
+.modal {
+  padding: 2em 3em;
+  border: none;
+  border-radius: var(--borderRadius);
+}
+
+.modalContent {
+  display: grid;
+  grid-template-rows: max-content max-content;
+  grid-template-columns: 16em;
+
+  height: 6em;
+}
+

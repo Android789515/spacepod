@@ -1,0 +1,12 @@
+.header {
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: space-between;
+  align-items: baseline;
+
+  background: #ff4f00;
+
+  padding-right: 1em;
+  margin-bottom: 1.675em;
+}
+

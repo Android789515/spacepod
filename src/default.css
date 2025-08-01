@@ -1,0 +1,24 @@
+:root {
+  --accentColor: #ff4f00;
+
+  --buttonFocusBackground: #eee;
+  --buttonActiveBackground: #e6e6e6;
+
+  --playerBackground: #eaeaea;
+  --playerBorder: solid #33333322 1px;
+
+  --background: #fff;
+
+  --borderRadius: .25em;
+}
+
+:root[style*='color-scheme: dark;'] {
+  --buttonFocusBackground: #323232;
+  --buttonActiveBackground: #272727;
+
+  --playerBackground: #3d3d3d;
+  --playerBorder: solid #eaeaea22 1px;
+
+  --background: #1c1b22;
+}
+

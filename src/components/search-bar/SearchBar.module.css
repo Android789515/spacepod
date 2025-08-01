@@ -1,0 +1,10 @@
+.searchBar {
+  width: 100%;
+
+  background: var(--buttonFocusBackground);
+  padding: .2em .5em;
+
+  border: none;
+  border-radius: var(--borderRadius);
+}
+

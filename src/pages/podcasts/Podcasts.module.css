@@ -1,0 +1,5 @@
+.podcasts.podcasts {
+  display: grid;
+  row-gap: .6em;
+}
+

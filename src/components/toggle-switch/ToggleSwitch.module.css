@@ -1,0 +1,32 @@
+.toggleSwitch.toggleSwitch {
+  --width: 2.5em;
+
+  width: var(--width);
+  height: calc(var(--width) / 2);
+
+  background: #ccc;
+  border-radius: 100px;
+}
+
+:root[style*='color-scheme: dark;'] .toggleSwitch.toggleSwitch {
+  background: #4d4c4d;
+}
+
+.knob {
+  display: block;
+
+  aspect-ratio: 1 / 1;
+
+  height: 90%;
+
+  background: #fff;
+
+  border-radius: 100px;
+
+  margin-left: 2px;
+}
+
+.knobToggled {
+  margin-left: calc(100% - ((var(--width) * .9) / 2) - 2px);
+}
+

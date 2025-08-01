@@ -1,0 +1,41 @@
+.settingsMenuIcon {
+  aspect-ratio: 1 / 1;
+
+  filter: invert(1);
+
+  width: 2.25em;
+}
+
+ul.menu {
+  position: fixed;
+  right: 0;
+
+  list-style: none;
+
+  height: 100vh;
+
+  background: var(--background);
+  padding: 1em;
+  margin: 0;
+
+  transform: translateX(100%);
+  transition: transform 250ms;
+}
+
+ul.menuOpen {
+  transform: translateX(0);
+}
+
+.colorSchemeValue {
+  color: dodgerblue;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 100%;
+}
+
+:root[style*='color-scheme: dark;'] .colorSchemeValue {
+  color: violet;
+}
+

@@ -1,0 +1,38 @@
+.playerArea {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom:  1em;
+
+  display: grid;
+  justify-content: center;
+}
+
+.player {
+  display: grid;
+  grid-template-rows: auto 2em;
+  grid-template-columns: 22em;
+
+  background: var(--playerBackground);
+  padding: 1em 1em;
+
+  border: var(--playerBorder);
+  border-radius: var(--borderRadius);
+}
+
+.contentTitle {
+  font-size: 1rem;
+}
+
+.contentDescription {
+  text-overflow: ellipsis;
+
+  white-space: nowrap;
+
+  overflow-x: hidden;
+}
+
+.audio {
+  border-radius: var(--borderRadius);
+}
+

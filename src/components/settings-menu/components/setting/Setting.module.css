@@ -1,0 +1,12 @@
+.layout {
+  font-size: 1.125rem;
+
+  display: grid;
+  grid-template-rows: auto 1em;
+  row-gap: .5em;
+}
+
+.layout > *:last-child {
+  justify-self: end;
+}
+
