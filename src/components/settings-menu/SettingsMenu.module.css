@@ -6,7 +6,7 @@
   width: 2.25em;
 }
 
-ul.menu {
+.menu {
   position: fixed;
   right: 0;
 
@@ -22,7 +22,7 @@ ul.menu {
   transition: transform 250ms;
 }
 
-ul.menuOpen {
+.menuOpen {
   transform: translateX(0);
 }
 
