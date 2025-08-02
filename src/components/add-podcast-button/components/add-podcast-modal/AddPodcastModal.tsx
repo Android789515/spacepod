@@ -1,6 +1,9 @@
 import { useRef, type HTMLAttributes } from 'react';
 
+import closeIcon from './assets/closeIcon.svg';
 import styles from './AddPodcastModal.module.css';
+
+import { Button } from 'components/button';
 
 interface Props extends HTMLAttributes<HTMLDialogElement> {
   readonly show: boolean;
@@ -31,13 +34,26 @@ export const AddPodcastModal = ({ show, setShow, podcastsURL, setPodcastsURL, ..
         className={styles.modalContent}
       >
         <label htmlFor={inputID}>
-          <h2>
+          <h2
+            className={styles.labelTitle}
+          >
             Enter URL
           </h2>
         </label>
 
+        <Button
+          onClick={() => setShow(false)}
+        >
+          <img
+            src={closeIcon}
+            alt='Close Modal'
+            className={styles.closeButton}
+          />
+        </Button>
+
         <input
           id={inputID}
+          className={styles.input}
           value={podcastsURL}
           onChange={event => setPodcastsURL(event.target.value)}
         />

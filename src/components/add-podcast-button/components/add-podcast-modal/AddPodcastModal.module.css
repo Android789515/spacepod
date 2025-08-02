@@ -7,9 +7,34 @@
 .modalContent {
   display: grid;
   grid-template-rows: max-content max-content;
-  grid-template-columns: 14em;
+  grid-template-columns: 14em 1.7em;
+  align-items: center;
+  row-gap: 1.5em;
 
   height: 6em;
+}
+
+.labelTitle {
+  margin: 0;
+}
+
+.closeButton {
+  padding: .1em;
+
+  border-radius: var(--borderRadius);
+}
+
+.closeButton:focus,
+.closeButton:hover {
+  background: var(--buttonFocusBackground);
+}
+
+.closeButton:active {
+  background: var(--buttonActiveBackground);
+}
+
+.input {
+  grid-column: span 2;
 }
 
 @media (min-width: 24.375em) {
