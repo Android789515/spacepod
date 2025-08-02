@@ -11,7 +11,8 @@
 .player {
   display: grid;
   grid-template-rows: auto 2em;
-  grid-template-columns: 22em;
+  /* grid-template-columns: 16em; */
+  grid-template-columns: 80vw;
 
   background: var(--playerBackground);
   padding: 1em 1em;
@@ -34,5 +35,11 @@
 
 .audio {
   border-radius: var(--borderRadius);
+}
+
+@media (min-width: 28.125em) {
+  .player {
+    grid-template-columns: 22em;
+  }
 }
 

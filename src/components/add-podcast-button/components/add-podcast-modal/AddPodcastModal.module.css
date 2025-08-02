@@ -1,5 +1,5 @@
 .modal {
-  padding: 2em 3em;
+  padding: 1em 1.25em;
   border: none;
   border-radius: var(--borderRadius);
 }
@@ -7,8 +7,18 @@
 .modalContent {
   display: grid;
   grid-template-rows: max-content max-content;
-  grid-template-columns: 16em;
+  grid-template-columns: 14em;
 
   height: 6em;
+}
+
+@media (min-width: 24.375em) {
+  .modal {
+    padding: 2em 3em;
+  }
+
+  .modalContent {
+    grid-template-columns: 16em;
+  }
 }
 

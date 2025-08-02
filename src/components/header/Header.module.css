@@ -10,3 +10,9 @@
   margin-bottom: 1.675em;
 }
 
+@media (min-width: 28.125em) {
+  .header > button {
+    font-size: 1.2rem;
+  }
+}
+

@@ -10,7 +10,10 @@
 .pageHeaderLayout {
   display: grid;
   --search-bar-width: 10em;
-  grid-template-columns: max-content var(--search-bar-width) max-content;
+  grid-template-rows: auto auto;
+  grid-template-columns: max-content max-content;
+  grid-auto-flow: column;
+  row-gap: 1.5em;
   column-gap: 1em;
   justify-content: start;
   align-items: center;
@@ -28,6 +31,13 @@
   font-size: 2rem;
 
   margin: 0;
+}
+
+@media (min-width: 28.125em) {
+  .pageHeaderLayout {
+    grid-template-columns: max-content var(--search-bar-width) max-content;
+    grid-auto-flow: initial;
+  }
 }
 
 @media (min-width: 31.25em) {

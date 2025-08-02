@@ -5,7 +5,7 @@
 
 .entry.entry {
   display: grid;
-  grid-template-columns: 4em auto;
+  grid-template-columns: 3.5em auto;
   column-gap: 1em;
   align-items: center;
 
@@ -33,5 +33,11 @@
 .coverArt {
   background: #fff;
   border-radius: var(--borderRadius);
+}
+
+@media (min-width: 28.125em) {
+  .entry.entry {
+    grid-template-columns: 4em auto;
+  }
 }
 
