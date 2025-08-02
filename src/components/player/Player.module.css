@@ -11,8 +11,8 @@
 .player {
   display: grid;
   grid-template-rows: auto 2em;
-  /* grid-template-columns: 16em; */
   grid-template-columns: 80vw;
+  justify-content: center;
 
   background: var(--playerBackground);
   padding: 1em 1em;
