@@ -1,9 +1,10 @@
 .linkableElement {
   text-decoration: none;
-  color: #000;
+
+  color: #000 !important;
 }
 
 :root[style*='color-scheme: dark;'] .linkableElement {
-  color: #fbfbfe;
+  color: #fbfbfe !important;
 }
 
