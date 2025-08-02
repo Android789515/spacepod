@@ -1,5 +1,9 @@
 .linkableElement {
   text-decoration: none;
-  color: inherit;
+  color: #000;
+}
+
+:root[style*='color-scheme: dark;'] .linkableElement {
+  color: #fbfbfe;
 }
 
