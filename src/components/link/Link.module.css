@@ -1,4 +1,5 @@
 .linkableElement {
   text-decoration: none;
+  color: inherit;
 }
 
