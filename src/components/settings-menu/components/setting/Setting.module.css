@@ -3,7 +3,7 @@
 
   display: grid;
   grid-template-rows: auto 1em;
-  row-gap: .5em;
+  row-gap: .9em;
 }
 
 .layout > *:last-child {
