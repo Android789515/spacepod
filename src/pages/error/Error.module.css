@@ -1,0 +1,40 @@
+.page {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+
+  min-height: 100vh;
+}
+
+.layout {
+  display: grid;
+  justify-content: center;
+}
+
+.title {
+  font-size: 1.6rem;
+}
+
+.button {
+  font-size: 1.1rem;
+  color: #fff;
+
+  justify-self: center;
+
+  background: var(--accentColor);
+  padding: .2em .4em;
+
+  border: none;
+  border-radius: var(--borderRadius);
+}
+
+@media (min-width: 28.125em) {
+  .title {
+    font-size: 2rem;
+  }
+
+  .button {
+    font-size: 1.2rem;
+  }
+}
+

@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 
+import { ErrorBoundary } from 'react-error-boundary';
+
 import { type PodcastInfo } from 'pages/podcasts/Podcasts';
 import type { EpisodeInfo } from 'pages/episodes';
 
@@ -7,6 +9,7 @@ import styles from './App.module.css';
 
 import { Header } from 'components/header';
 import { Content } from 'components/content';
+import { Error } from 'pages/error';
 import { Player } from 'components/player';
 
 export interface Settings {
@@ -36,11 +39,15 @@ export const App = () => {
         setSettings={setSettings}
       />
 
-      <Content
-        podcastsState={podcastsState}
-        currentPodcastState={currentPodcastState}
-        setEpisodePlaying={episode => setEpisodePlaying(episode)}
-      />
+      <ErrorBoundary
+        FallbackComponent={Error}
+      >
+        <Content
+          podcastsState={podcastsState}
+          currentPodcastState={currentPodcastState}
+          setEpisodePlaying={episode => setEpisodePlaying(episode)}
+        />
+      </ErrorBoundary>
 
       {episodePlaying && (
         <Player

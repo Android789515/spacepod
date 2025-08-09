@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useErrorBoundary } from 'react-error-boundary';
 
 import type { CurrentPodcastState, PodcastsState } from 'types/state';
 import type { EpisodeInfo } from 'pages/episodes';
@@ -59,6 +60,8 @@ export const Podcasts = ({ podcastsState, currentPodcastState }: Props) => {
 
   const [ searchValue, setSearchValue ] = useState('');
 
+  const { showBoundary } = useErrorBoundary();
+
   return (
     <Page
       title='Podcasts'
@@ -91,7 +94,11 @@ export const Podcasts = ({ podcastsState, currentPodcastState }: Props) => {
                     }
                   })
                   .then(() => setPodcastsURL(''))
-                  .catch(error => console.error(error));
+                  .catch(error => {
+                    console.error(error);
+
+                    showBoundary(error);
+                  });
               }
             }}
           />

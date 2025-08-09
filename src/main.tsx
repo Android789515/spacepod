@@ -9,6 +9,8 @@ import './index.css';
 import './default.css';
 
 import { App } from './App';
+import { Error } from 'pages/error';
+import { ErrorBoundary } from 'react-error-boundary';
 
 const routes: Route[] = [
   { name: 'home', path: '/' },
@@ -23,7 +25,9 @@ router.start(() => {
   createRoot(document.getElementById('root')!).render(
     <StrictMode>
       <RouterProvider router={router}>
-        <App />
+        <ErrorBoundary FallbackComponent={Error}>
+          <App />
+        </ErrorBoundary>
       </RouterProvider>
     </StrictMode>
   );
