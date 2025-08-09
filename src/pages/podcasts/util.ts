@@ -50,7 +50,7 @@ export const parsePodcastInfo = (xmlData: Document): PodcastInfo => {
       description: description.textContent || '',
       publishDate: publishDate.textContent || 'No Date',
       podcastTitle: podcastTitle,
-      authors: [authors.textContent || '']
+      authors: [authors?.textContent || '']
     };
   });
 
