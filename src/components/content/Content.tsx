@@ -4,6 +4,7 @@ import type { CurrentPodcastState, PodcastsState } from 'types/state';
 
 import { Podcasts } from 'pages/podcasts';
 import { Episodes, type EpisodeInfo } from 'pages/episodes';
+import { NotFound } from 'pages/not-found';
 
 interface Props {
   readonly podcastsState: PodcastsState;
@@ -15,7 +16,7 @@ export const Content = ({ podcastsState, currentPodcastState, setEpisodePlaying 
   const [ currentPodcast ] = currentPodcastState;
 
   const { route } = useRouteNode('');
-  const topRouteName = route.name.split('.')[0]
+  const topRouteName = route?.name.split('.')[0]
 
   switch (topRouteName) {
     case 'home': {
@@ -35,6 +36,12 @@ export const Content = ({ podcastsState, currentPodcastState, setEpisodePlaying 
         />
       );
     };
+
+    default: {
+      return (
+        <NotFound />
+      );
+    }
   }
 };
 
