@@ -7,7 +7,7 @@
 .modalContent {
   display: grid;
   grid-template-rows: max-content max-content;
-  grid-template-columns: 14em 1.7em;
+  grid-template-columns: 12em 1.7em;
   align-items: center;
   row-gap: 1.5em;
 
@@ -43,7 +43,7 @@
   }
 
   .modalContent {
-    grid-template-columns: 16em;
+    grid-template-columns: 16em 1.7em;
   }
 }
 
