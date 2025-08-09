@@ -1,12 +1,16 @@
-.layout {
+.setting {
   font-size: 1.125rem;
 
   display: grid;
-  grid-template-rows: auto 1em;
+  grid-template-rows: auto auto;
   row-gap: .9em;
 }
 
-.layout > *:last-child {
-  justify-self: end;
+.setting:not(.setting:last-child) {
+  padding-bottom: 1.25em;
+
+  border-bottom: solid #33333333 1px;
+
+  margin-bottom: 1em;
 }
 

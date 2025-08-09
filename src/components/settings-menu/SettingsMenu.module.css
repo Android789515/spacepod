@@ -11,6 +11,7 @@
   right: 0;
 
   list-style: none;
+  z-index: 1;
 
   height: 100vh;
 
@@ -39,3 +40,32 @@
   color: violet;
 }
 
+.saveLoadPodcasts {
+  display: grid;
+  row-gap: .4em;
+}
+
+.saveButton,
+.loadButton {
+  color: #fff;
+
+  display: grid;
+  grid-template-columns: 1.1em auto;
+  align-items: center;
+
+  padding: .2em .4em;
+
+  border-radius: calc(var(--borderRadius) / 1.5);
+}
+
+.saveButton {
+  background: dodgerblue;
+}
+
+.loadButton {
+  background: var(--accentColor);
+}
+
+.saveLoadButtonIcon {
+  filter: invert(1);
+}

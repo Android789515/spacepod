@@ -1,8 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
 
 import type { Settings } from 'App';
+import type { PodcastsState } from 'types/state';
 
 import menuIcon from './assets/menu.svg';
+import downloadIcon from './assets/downloadIcon.svg';
+import uploadIcon from './assets/uploadIcon.svg';
 import styles from './SettingsMenu.module.css';
 
 import { Button } from 'components/button';
@@ -12,9 +15,10 @@ import { ToggleSwitch } from 'components/toggle-switch/ToggleSwitch';
 interface Props {
   readonly settings: Settings;
   readonly setSettings: (updater: (prevSettings: Settings) => Settings) => void;
+  readonly podcastsState: PodcastsState;
 }
 
-export const SettingsMenu = ({ settings, setSettings }: Props) => {
+export const SettingsMenu = ({ settings, setSettings, podcastsState }: Props) => {
   const [ menuOpen, setMenuOpen ] = useState(false);
 
   const menuRef = useRef<HTMLUListElement | null>(null);
@@ -36,6 +40,16 @@ export const SettingsMenu = ({ settings, setSettings }: Props) => {
       document.body.removeEventListener('mousedown', closeMenu);
     };
   }, []);
+
+  const [ podcasts, setPodcasts ] = podcastsState;
+
+  const serializedPodcasts = window.URL.createObjectURL(
+    new Blob([JSON.stringify([...podcasts])], {
+      type: 'application/json',
+    })
+  );
+
+  const uploadRef = useRef<HTMLInputElement | null>(null);
 
   return (
     <>
@@ -81,6 +95,62 @@ export const SettingsMenu = ({ settings, setSettings }: Props) => {
                 });
               }}
             />
+          </div>
+        </Setting>
+
+        <Setting
+          label={`Save/Load Podcasts`}
+        >
+          <div
+            className={styles.saveLoadPodcasts}
+          >
+            <Button
+              customStyles={styles.saveButton}
+              download={{
+                name: 'Podcasts',
+                url: serializedPodcasts,
+              }}
+            >
+              <img
+                src={downloadIcon}
+                alt='Save'
+                className={styles.saveLoadButtonIcon}
+              />
+
+              Save
+            </Button>
+
+            <Button
+              customStyles={styles.loadButton}
+              onClick={() => {
+                uploadRef.current?.click();
+              }}
+            >
+              <img
+                src={uploadIcon}
+                alt='Load'
+                className={styles.saveLoadButtonIcon}
+              />
+              <input
+                type='file'
+                style={{
+                  display: 'none',
+                }}
+                onChange={event => {
+                  if (event.target.files) {
+                    const file = event.target.files[0];
+
+                    file.text()
+                      .then(content => {
+                        setPodcasts(JSON.parse(content));
+                      });
+                  }
+                }}
+                ref={uploadRef}
+              />
+
+              Load
+            </Button>
           </div>
         </Setting>
       </ul>

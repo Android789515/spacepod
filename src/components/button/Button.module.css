@@ -4,3 +4,9 @@
   border: none;
 }
 
+.linkButton {
+  text-decoration: none;
+  text-align: center;
+  color: inherit;
+}
+

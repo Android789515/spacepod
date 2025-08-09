@@ -37,6 +37,7 @@ export const App = () => {
       <Header
         settings={settings}
         setSettings={setSettings}
+        podcastsState={podcastsState}
       />
 
       <ErrorBoundary

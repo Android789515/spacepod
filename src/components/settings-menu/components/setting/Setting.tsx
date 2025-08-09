@@ -10,7 +10,7 @@ interface Props {
 export const Setting = ({ label, children }: Props) => {
   return (
     <li
-      className={styles.layout}
+      className={styles.setting}
     >
       <label
         className={styles.label}
