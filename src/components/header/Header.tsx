@@ -1,5 +1,7 @@
+import type { Dispatch, SetStateAction } from 'react';
+
 import type { Settings } from 'App';
-import type { PodcastsState } from 'types/state';
+import type { PodcastInfo } from 'pages/podcasts';
 
 import styles from './Header.module.css';
 
@@ -9,10 +11,11 @@ import { SettingsMenu } from 'components/settings-menu';
 interface Props {
   readonly settings: Settings;
   readonly setSettings: (updater: (prevSettings: Settings) => Settings) => void;
-  readonly podcastsState: PodcastsState;
+  readonly podcasts: Set<PodcastInfo>;
+  readonly setPodcasts: Dispatch<SetStateAction<Set<PodcastInfo>>>;
 }
 
-export const Header = ({ settings, setSettings, podcastsState }: Props) => {
+export const Header = ({ settings, setSettings, podcasts, setPodcasts }: Props) => {
   return (
     <header
       className={styles.header}
@@ -22,7 +25,8 @@ export const Header = ({ settings, setSettings, podcastsState }: Props) => {
       <SettingsMenu
         settings={settings}
         setSettings={setSettings}
-        podcastsState={podcastsState}
+        podcasts={podcasts}
+        setPodcasts={setPodcasts}
       />
     </header>
   );

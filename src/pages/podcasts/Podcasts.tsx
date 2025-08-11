@@ -1,7 +1,7 @@
+import type { Dispatch, SetStateAction } from 'react';
 import { useState } from 'react';
 import { useErrorBoundary } from 'react-error-boundary';
 
-import type { CurrentPodcastState, PodcastsState } from 'types/state';
 import type { EpisodeInfo } from 'pages/episodes';
 import { parsePodcastInfo } from './util';
 
@@ -23,14 +23,12 @@ export interface PodcastInfo {
 }
 
 interface Props {
-  readonly podcastsState: PodcastsState;
-  readonly currentPodcastState: CurrentPodcastState;
+  readonly podcasts: Set<PodcastInfo>;
+  readonly setPodcasts: Dispatch<SetStateAction<Set<PodcastInfo>>>;
+  readonly setCurrentPodcast: Dispatch<SetStateAction<PodcastInfo | null>>;
 }
 
-export const Podcasts = ({ podcastsState, currentPodcastState }: Props) => {
-  const [ podcasts, setPodcasts ] = podcastsState;
-  const [ , setCurrentPodcast ] = currentPodcastState;
-
+export const Podcasts = ({ podcasts, setPodcasts, setCurrentPodcast }: Props) => {
   const [ podcastsURL, setPodcastsURL ] = useState('');
 
   const fetchPodcasts = async () => {

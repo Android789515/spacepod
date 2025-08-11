@@ -24,6 +24,9 @@
     "noUncheckedSideEffectImports": true,
     "baseUrl": "./src",
     "paths": {
+      "hooks/*": [
+        "hooks/*"
+      ],
       "assets/*": [
         "assets/*"
       ],
