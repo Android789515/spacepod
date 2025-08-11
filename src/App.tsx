@@ -4,6 +4,7 @@ import { ErrorBoundary } from 'react-error-boundary';
 
 import { type PodcastInfo } from 'pages/podcasts/Podcasts';
 import type { EpisodeInfo } from 'pages/episodes';
+import { useLocalStorage } from 'hooks';
 
 import styles from './App.module.css';
 
@@ -17,17 +18,23 @@ export interface Settings {
 }
 
 export const App = () => {
-  const [ settings, setSettings ] = useState<Settings>({
-    colorScheme: 'light',
+  const [ settings, setSettings ] = useLocalStorage<Settings>({
+    key: 'spacepod-settings',
+    defaultValue: {
+      colorScheme: 'light',
+    },
   });
 
   useEffect(() => {
     document.documentElement.style.colorScheme = settings.colorScheme;
   }, [ settings ]);
 
-  const podcastsState = useState<Set<PodcastInfo>>(new Set());
+  const [ podcasts, setPodcasts ] = useLocalStorage<Set<PodcastInfo>>({
+    key: 'spacepod-podcasts',
+    defaultValue: new Set(),
+  });
 
-  const currentPodcastState = useState<PodcastInfo | null>(null);
+  const [ currentPodcast, setCurrentPodcast ]= useState<PodcastInfo | null>(null);
   const [ episodePlaying, setEpisodePlaying ] = useState<EpisodeInfo | null>(null);
 
   return (
@@ -37,15 +44,18 @@ export const App = () => {
       <Header
         settings={settings}
         setSettings={setSettings}
-        podcastsState={podcastsState}
+        podcasts={podcasts}
+        setPodcasts={setPodcasts}
       />
 
       <ErrorBoundary
         FallbackComponent={Error}
       >
         <Content
-          podcastsState={podcastsState}
-          currentPodcastState={currentPodcastState}
+          podcasts={podcasts}
+          setPodcasts={setPodcasts}
+          currentPodcast={currentPodcast}
+          setCurrentPodcast={setCurrentPodcast}
           setEpisodePlaying={episode => setEpisodePlaying(episode)}
         />
       </ErrorBoundary>

@@ -1,20 +1,21 @@
+import type { Dispatch, SetStateAction } from 'react';
 import { useRouteNode } from 'react-router5';
 
-import type { CurrentPodcastState, PodcastsState } from 'types/state';
+import { Episodes, type EpisodeInfo } from 'pages/episodes';
+import type { PodcastInfo } from 'pages/podcasts';
 
 import { Podcasts } from 'pages/podcasts';
-import { Episodes, type EpisodeInfo } from 'pages/episodes';
 import { NotFound } from 'pages/not-found';
 
 interface Props {
-  readonly podcastsState: PodcastsState;
-  readonly currentPodcastState: CurrentPodcastState;
+  readonly podcasts: Set<PodcastInfo>;
+  readonly setPodcasts: Dispatch<SetStateAction<Set<PodcastInfo>>>;
+  readonly currentPodcast: PodcastInfo | null;
+  readonly setCurrentPodcast: Dispatch<SetStateAction<PodcastInfo | null>>;
   readonly setEpisodePlaying: (episode: EpisodeInfo) => void;
 }
 
-export const Content = ({ podcastsState, currentPodcastState, setEpisodePlaying }: Props) => {
-  const [ currentPodcast ] = currentPodcastState;
-
+export const Content = ({ podcasts, setPodcasts, currentPodcast, setCurrentPodcast, setEpisodePlaying }: Props) => {
   const { route } = useRouteNode('');
   const topRouteName = route?.name.split('.')[0]
 
@@ -22,8 +23,9 @@ export const Content = ({ podcastsState, currentPodcastState, setEpisodePlaying 
     case 'home': {
       return (
         <Podcasts
-          podcastsState={podcastsState}
-          currentPodcastState={currentPodcastState}
+          podcasts={podcasts}
+          setPodcasts={setPodcasts}
+          setCurrentPodcast={setCurrentPodcast}
         />
       );
     };

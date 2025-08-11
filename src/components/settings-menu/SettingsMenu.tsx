@@ -1,7 +1,8 @@
+import type { Dispatch, SetStateAction } from 'react';
 import { useEffect, useRef, useState } from 'react';
 
 import type { Settings } from 'App';
-import type { PodcastsState } from 'types/state';
+import type { PodcastInfo } from 'pages/podcasts';
 
 import menuIcon from './assets/menu.svg';
 import downloadIcon from './assets/downloadIcon.svg';
@@ -15,10 +16,11 @@ import { ToggleSwitch } from 'components/toggle-switch/ToggleSwitch';
 interface Props {
   readonly settings: Settings;
   readonly setSettings: (updater: (prevSettings: Settings) => Settings) => void;
-  readonly podcastsState: PodcastsState;
+  readonly podcasts: Set<PodcastInfo>;
+  readonly setPodcasts: Dispatch<SetStateAction<Set<PodcastInfo>>>;
 }
 
-export const SettingsMenu = ({ settings, setSettings, podcastsState }: Props) => {
+export const SettingsMenu = ({ settings, setSettings, podcasts, setPodcasts }: Props) => {
   const [ menuOpen, setMenuOpen ] = useState(false);
 
   const menuRef = useRef<HTMLUListElement | null>(null);
@@ -40,8 +42,6 @@ export const SettingsMenu = ({ settings, setSettings, podcastsState }: Props) =>
       document.body.removeEventListener('mousedown', closeMenu);
     };
   }, []);
-
-  const [ podcasts, setPodcasts ] = podcastsState;
 
   const serializedPodcasts = window.URL.createObjectURL(
     new Blob([JSON.stringify([...podcasts])], {
@@ -91,7 +91,7 @@ export const SettingsMenu = ({ settings, setSettings, podcastsState }: Props) =>
                   return {
                     ...prevSettings,
                     colorScheme,
-                  };
+                  } as Settings;
                 });
               }}
             />
