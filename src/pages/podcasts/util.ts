@@ -41,12 +41,14 @@ export const parsePodcastInfo = (xmlData: Document): PodcastInfo => {
       // Authors
       'dc:creator',
     ]);
+    const url = [...audioLink.attributes].find(attribute => attribute.name === 'url');
+    const coverArtHref = [...coverArt.attributes].find(attribute => attribute.name === 'href');
 
     return {
       id: newUUID(),
       title: title.textContent || 'Untitled',
-      url: audioLink.attributes[0].textContent!,
-      coverArt: coverArt?.attributes[0].textContent || '',
+      url: url!.textContent,
+      coverArt: coverArtHref?.textContent || '',
       description: description.textContent || '',
       publishDate: publishDate.textContent || 'No Date',
       podcastTitle: podcastTitle,
