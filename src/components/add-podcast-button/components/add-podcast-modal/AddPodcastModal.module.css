@@ -4,6 +4,10 @@
   border-radius: var(--borderRadius);
 }
 
+:root[style*='color-scheme: dark'] .modal {
+  background: #333;
+}
+
 .modalContent {
   display: grid;
   grid-template-rows: max-content max-content;
@@ -22,6 +26,10 @@
   padding: .1em;
 
   border-radius: var(--borderRadius);
+}
+
+:root[style*='color-scheme: dark;'] .closeButton {
+  filter: invert(1);
 }
 
 .closeButton:focus,
