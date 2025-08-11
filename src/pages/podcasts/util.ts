@@ -47,7 +47,7 @@ export const parsePodcastInfo = (xmlData: Document): PodcastInfo => {
     return {
       id: newUUID(),
       title: title.textContent || 'Untitled',
-      url: url!.textContent,
+      url: url!.textContent!,
       coverArt: coverArtHref?.textContent || '',
       description: description.textContent || '',
       publishDate: publishDate.textContent || 'No Date',
