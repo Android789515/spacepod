@@ -41,8 +41,8 @@ export const parsePodcastInfo = (xmlData: Document): PodcastInfo => {
       // Authors
       'dc:creator',
     ]);
-    const url = [...audioLink.attributes].find(attribute => attribute.name === 'url');
-    const coverArtHref = [...coverArt.attributes].find(attribute => attribute.name === 'href');
+    const url = [...audioLink?.attributes || []].find(attribute => attribute.name === 'url');
+    const coverArtHref = [...coverArt?.attributes || []].find(attribute => attribute.name === 'href');
 
     return {
       id: newUUID(),
