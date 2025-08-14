@@ -8,8 +8,8 @@ import { Podcasts } from 'pages/podcasts';
 import { NotFound } from 'pages/not-found';
 
 interface Props {
-  readonly podcasts: Set<PodcastInfo>;
-  readonly setPodcasts: Dispatch<SetStateAction<Set<PodcastInfo>>>;
+  readonly podcasts: PodcastInfo[];
+  readonly setPodcasts: Dispatch<SetStateAction<PodcastInfo[]>>;
   readonly currentPodcast: PodcastInfo | null;
   readonly setCurrentPodcast: Dispatch<SetStateAction<PodcastInfo | null>>;
   readonly setEpisodePlaying: (episode: EpisodeInfo) => void;

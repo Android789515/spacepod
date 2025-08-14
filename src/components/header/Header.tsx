@@ -11,8 +11,8 @@ import { SettingsMenu } from 'components/settings-menu';
 interface Props {
   readonly settings: Settings;
   readonly setSettings: (updater: (prevSettings: Settings) => Settings) => void;
-  readonly podcasts: Set<PodcastInfo>;
-  readonly setPodcasts: Dispatch<SetStateAction<Set<PodcastInfo>>>;
+  readonly podcasts: PodcastInfo[];
+  readonly setPodcasts: Dispatch<SetStateAction<PodcastInfo[]>>;
 }
 
 export const Header = ({ settings, setSettings, podcasts, setPodcasts }: Props) => {
