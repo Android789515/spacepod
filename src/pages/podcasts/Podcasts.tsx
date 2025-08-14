@@ -25,8 +25,8 @@ export interface PodcastInfo {
 }
 
 interface Props {
-  readonly podcasts: Set<PodcastInfo>;
-  readonly setPodcasts: Dispatch<SetStateAction<Set<PodcastInfo>>>;
+  readonly podcasts: PodcastInfo[];
+  readonly setPodcasts: Dispatch<SetStateAction<PodcastInfo[]>>;
   readonly setCurrentPodcast: Dispatch<SetStateAction<PodcastInfo | null>>;
 }
 
@@ -89,10 +89,18 @@ export const Podcasts = ({ podcasts, setPodcasts, setCurrentPodcast }: Props) =>
                         .parseFromString(data, 'text/xml');
 
                       setPodcasts(podcasts => {
-                        return new Set([
-                          ...podcasts,
-                          parsePodcastInfo(xmlData, podcastsURL),
-                        ]);
+                        const newPodcast = parsePodcastInfo(xmlData, podcastsURL);
+
+                        const isUniquePodcast = !podcasts.find(podcast => podcast.url === newPodcast.url);
+
+                        if (isUniquePodcast) {
+                          return [
+                            ...podcasts,
+                            newPodcast,
+                          ];
+                        } else {
+                          return podcasts;
+                        }
                       });
                     }
                   })
@@ -136,7 +144,7 @@ export const Podcasts = ({ podcasts, setPodcasts, setCurrentPodcast }: Props) =>
 
                     setSelectedPodcasts([]);
 
-                    return new Set(updatedPodcasts);
+                    return updatedPodcasts;
                   });
 
                   setSelectMode(false);
@@ -147,7 +155,7 @@ export const Podcasts = ({ podcasts, setPodcasts, setCurrentPodcast }: Props) =>
           </section>
 
           <List
-            data={[ ...podcasts ]}
+            data={podcasts}
             filter={{
               keys: [ 'title' ],
               search: searchValue,

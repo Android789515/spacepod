@@ -29,9 +29,9 @@ export const App = () => {
     document.documentElement.style.colorScheme = settings.colorScheme;
   }, [ settings ]);
 
-  const [ podcasts, setPodcasts ] = useLocalStorage<Set<PodcastInfo>>({
+  const [ podcasts, setPodcasts ] = useLocalStorage<PodcastInfo[]>({
     key: 'spacepod-podcasts',
-    defaultValue: new Set(),
+    defaultValue: [],
   });
 
   const [ currentPodcast, setCurrentPodcast ]= useState<PodcastInfo | null>(null);

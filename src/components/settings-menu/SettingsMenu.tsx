@@ -16,8 +16,8 @@ import { ToggleSwitch } from 'components/toggle-switch/ToggleSwitch';
 interface Props {
   readonly settings: Settings;
   readonly setSettings: (updater: (prevSettings: Settings) => Settings) => void;
-  readonly podcasts: Set<PodcastInfo>;
-  readonly setPodcasts: Dispatch<SetStateAction<Set<PodcastInfo>>>;
+  readonly podcasts: PodcastInfo[];
+  readonly setPodcasts: Dispatch<SetStateAction<PodcastInfo[]>>;
 }
 
 export const SettingsMenu = ({ settings, setSettings, podcasts, setPodcasts }: Props) => {
@@ -44,7 +44,7 @@ export const SettingsMenu = ({ settings, setSettings, podcasts, setPodcasts }: P
   }, []);
 
   const serializedPodcasts = window.URL.createObjectURL(
-    new Blob([JSON.stringify([...podcasts])], {
+    new Blob([JSON.stringify(podcasts)], {
       type: 'application/json',
     })
   );
