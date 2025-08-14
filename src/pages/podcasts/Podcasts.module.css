@@ -32,3 +32,11 @@
   visibility: visible;
 }
 
+@media (min-width: 28.125em) {
+  .buttons {
+    font-size: 1.2rem;
+
+    width: 18.25em;
+  }
+}
+
