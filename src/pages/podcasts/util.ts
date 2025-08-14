@@ -13,7 +13,7 @@ const parseTags = (element: Element, tags: string[]) => {
   });
 };
 
-export const parsePodcastInfo = (xmlData: Document): PodcastInfo => {
+export const parsePodcastInfo = (xmlData: Document, podcastURL: string): PodcastInfo => {
   const podcastTitle = xmlData.getElementsByTagName('title')[0]
     .textContent || 'Untitled';
 
@@ -60,6 +60,7 @@ export const parsePodcastInfo = (xmlData: Document): PodcastInfo => {
 
   return {
     id: newUUID(),
+    url: podcastURL,
     title: podcastTitle,
     description: podcastDescription,
     episodes,

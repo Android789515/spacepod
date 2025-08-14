@@ -16,6 +16,7 @@ import { Button } from 'components/button';
 
 export interface PodcastInfo {
   readonly id: string;
+  readonly url: string;
   readonly title: string;
   readonly episodes: EpisodeInfo[];
   readonly coverArt: string;
@@ -77,7 +78,9 @@ export const Podcasts = ({ podcasts, setPodcasts, setCurrentPodcast }: Props) =>
           <AddPodcastButton
             podcastsURL={podcastsURL}
             setPodcastsURL={value => setPodcastsURL(value)}
-            onSubmit={() => {
+            onSubmit={event => {
+              event.preventDefault();
+
               if (podcastsURL.match(urlPattern)) {
                 fetchPodcasts()
                   .then(data => {
@@ -88,7 +91,7 @@ export const Podcasts = ({ podcasts, setPodcasts, setCurrentPodcast }: Props) =>
                       setPodcasts(podcasts => {
                         return new Set([
                           ...podcasts,
-                          parsePodcastInfo(xmlData),
+                          parsePodcastInfo(xmlData, podcastsURL),
                         ]);
                       });
                     }
