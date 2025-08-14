@@ -3,6 +3,8 @@ import { v4 as newUUID } from 'uuid';
 import type { PodcastInfo } from './Podcasts';
 import type { EpisodeInfo } from 'pages/episodes';
 
+export const urlPattern = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/;
+
 const parseTags = (element: Element, tags: string[]) => {
   return tags.map(tag => {
     const [ onlyTag ] = element.getElementsByTagName(tag);
