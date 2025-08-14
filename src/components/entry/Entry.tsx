@@ -21,13 +21,12 @@ export const Entry = ({ title, coverArt, authors, selectMode, selected, ...rest 
         ${selectMode && styles.selectMode}
       `}
     >
-      <Button
+      <span
         className={`
           ${styles.selectButton}
           ${selectMode && styles.selectButtonShown}
           ${selected && styles.selectButtonSelected}
         `}
-        children={null}
       />
 
       <img
