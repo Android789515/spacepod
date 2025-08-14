@@ -6,10 +6,13 @@ import { Entry } from 'components/entry';
 import { Link } from 'components/link';
 
 interface Props {
+  readonly id: string;
   readonly title: string;
   readonly coverArt: string;
   readonly authors: string[];
   readonly onClick: () => void;
+  readonly selectMode?: boolean;
+  readonly selected?: boolean;
 }
 
 export const Podcast = ({
@@ -17,23 +20,35 @@ export const Podcast = ({
   coverArt,
   authors,
   onClick,
-  
+  selectMode,
+  selected,
 }: Props) => {
   const { router } = useRoute();
 
-  return (
-    <Link
-      router={router}
-      routeName='podcast'
-      isLinkableElement
-    >
-      <Entry
-        title={title}
-        coverArt={coverArt || defaultCoverArt}
-        authors={authors}
-        onClick={onClick}
-      />
-    </Link>
+  const ItemEntry = (
+    <Entry
+      title={title}
+      coverArt={coverArt || defaultCoverArt}
+      authors={authors}
+      onClick={onClick}
+      selectMode={selectMode}
+      selected={selected}
+    />
   );
+
+  if (selectMode) {
+    return ItemEntry;
+  } else {
+    return (
+      <Link
+        router={router}
+        routeName='podcast'
+        isLinkableElement
+        onAuxClick={event => event.preventDefault()}
+      >
+        {ItemEntry}
+      </Link>
+    );
+  }
 };
 

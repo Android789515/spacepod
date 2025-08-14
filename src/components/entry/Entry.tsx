@@ -8,14 +8,28 @@ interface Props extends HTMLAttributes<HTMLButtonElement> {
   readonly title: string;
   readonly coverArt: string;
   readonly authors: string[];
+  readonly selectMode?: boolean;
+  readonly selected?: boolean;
 }
 
-export const Entry = ({ title, coverArt, authors, ...rest }: Props) => {
+export const Entry = ({ title, coverArt, authors, selectMode, selected, ...rest }: Props) => {
   return (
     <Button
       {...rest}
-      customStyles={styles.entry}
+      customStyles={`
+        ${styles.entry}
+        ${selectMode && styles.selectMode}
+      `}
     >
+      <Button
+        className={`
+          ${styles.selectButton}
+          ${selectMode && styles.selectButtonShown}
+          ${selected && styles.selectButtonSelected}
+        `}
+        children={null}
+      />
+
       <img
         src={coverArt || defaultCoverArt}
         alt='Cover Art'

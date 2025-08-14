@@ -1,6 +1,7 @@
 .page {
   display: grid;
   grid-template-columns: minmax(1em, 1fr) 90% minmax(1em, 1fr);
+  row-gap: 1.66em;
 }
 
 .page > * {
@@ -17,8 +18,6 @@
   column-gap: 1em;
   justify-content: start;
   align-items: center;
-
-  margin-bottom: 1.66em;
 
   transition: grid-template-columns 250ms;
 }

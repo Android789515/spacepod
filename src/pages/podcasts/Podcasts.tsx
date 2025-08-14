@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useErrorBoundary } from 'react-error-boundary';
 
 import type { EpisodeInfo } from 'pages/episodes';
-import { parsePodcastInfo } from './util';
+import { urlPattern, parsePodcastInfo } from './util';
 
 import styles from './Podcasts.module.css';
 
@@ -12,6 +12,7 @@ import { Podcast } from './components/podcast';
 import { SearchBar } from 'components/search-bar';
 import { AddPodcastButton } from '../../components/add-podcast-button';
 import { Page } from 'components/page';
+import { Button } from 'components/button';
 
 export interface PodcastInfo {
   readonly id: string;
@@ -58,6 +59,9 @@ export const Podcasts = ({ podcasts, setPodcasts, setCurrentPodcast }: Props) =>
 
   const [ searchValue, setSearchValue ] = useState('');
 
+  const [ selectMode, setSelectMode ] = useState(false);
+  const [ selectedPodcasts, setSelectedPodcasts ] = useState<string[]>([]);
+
   const { showBoundary } = useErrorBoundary();
 
   return (
@@ -73,10 +77,8 @@ export const Podcasts = ({ podcasts, setPodcasts, setCurrentPodcast }: Props) =>
           <AddPodcastButton
             podcastsURL={podcastsURL}
             setPodcastsURL={value => setPodcastsURL(value)}
-            onSubmit={event => {
-              event.preventDefault();
-
-              if (podcastsURL) {
+            onSubmit={() => {
+              if (podcastsURL.match(urlPattern)) {
                 fetchPodcasts()
                   .then(data => {
                     if (window.DOMParser) {
@@ -97,26 +99,83 @@ export const Podcasts = ({ podcasts, setPodcasts, setCurrentPodcast }: Props) =>
 
                     showBoundary(error);
                   });
+
+                return true;
+              } else {
+                return false;
               }
             }}
           />
         </>
       )}
       mainContent={(
-        <List
-          data={[ ...podcasts ]}
-          filter={{
-            keys: [ 'title' ],
-            search: searchValue,
-          }}
-          component={podcastInfo => (
-            <Podcast
-              onClick={() => setCurrentPodcast(podcastInfo)}
-              {...podcastInfo}
-            />
-          )}
-          customStyle={styles.podcasts}
-        />
+        <>
+          <section
+            className={styles.buttons}
+          >
+            <Button
+              customStyles={styles.selectButton}
+              onClick={() => setSelectMode(prev => !prev)}
+            >
+              Select
+            </Button>
+
+            <Button
+              customStyles={`
+                ${styles.deleteButton}
+                ${selectMode && styles.deleteButtonShown}
+              `}
+              onClick={() => {
+                  setPodcasts(prevPodcasts => {
+                    const updatedPodcasts = [...prevPodcasts].filter(podcast => {
+                      return !selectedPodcasts.includes(podcast.id);
+                    });
+
+                    setSelectedPodcasts([]);
+
+                    return new Set(updatedPodcasts);
+                  });
+
+                  setSelectMode(false);
+              }}
+            >
+              Delete
+            </Button>
+          </section>
+
+          <List
+            data={[ ...podcasts ]}
+            filter={{
+              keys: [ 'title' ],
+              search: searchValue,
+            }}
+            component={podcastInfo => {
+              const isSelected = selectedPodcasts.some(id => id === podcastInfo.id);
+
+              return (
+                <Podcast
+                  selectMode={selectMode}
+                  selected={isSelected}
+                  onClick={() => {
+                    if (selectMode) {
+                      setSelectedPodcasts(prevPodcasts => {
+                        if (isSelected) {
+                          return prevPodcasts.filter(id => id !== podcastInfo.id);
+                        } else {
+                          return [...prevPodcasts, podcastInfo.id];
+                        }
+                      });
+                    } else {
+                      setCurrentPodcast(podcastInfo);
+                    }
+                  }}
+                  {...podcastInfo}
+                />
+              );
+            }}
+            customStyle={styles.podcasts}
+          />
+        </>
       )}
     />
   );

@@ -24,6 +24,27 @@
   background: var(--buttonActiveBackground);
 }
 
+.selectMode.selectMode {
+  grid-template-columns: 1em 3.5em auto;
+}
+
+.selectButton.selectButton {
+  display: none;
+
+  aspect-ratio: 1 / 1;
+
+  border: solid 1px;
+  border-radius: 100px;
+}
+
+.selectButtonShown.selectButtonShown {
+  display: initial;
+}
+
+.selectButtonSelected.selectButtonSelected {
+  background: dodgerblue;
+}
+
 .info > * {
   text-align: left;
 
@@ -38,6 +59,10 @@
 @media (min-width: 28.125em) {
   .entry.entry {
     grid-template-columns: 4em auto;
+  }
+
+  .selectMode.selectMode {
+    grid-template-columns: 1em 4em auto;
   }
 }
 
