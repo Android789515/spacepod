@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import { ErrorBoundary } from 'react-error-boundary';
+import { Toaster } from 'react-hot-toast';
 
 import { type PodcastInfo } from 'pages/podcasts/Podcasts';
 import type { EpisodeInfo } from 'pages/episodes';
@@ -65,6 +66,8 @@ export const App = () => {
           episodePlaying={episodePlaying}
         />
       )}
+
+      <Toaster />
     </div>
   );
 };
