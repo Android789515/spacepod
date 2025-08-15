@@ -1,6 +1,7 @@
 import type { Dispatch, SetStateAction } from 'react';
 import { useState } from 'react';
 import { useErrorBoundary } from 'react-error-boundary';
+import toast from 'react-hot-toast';
 
 import type { EpisodeInfo } from 'pages/episodes';
 import { urlPattern, parsePodcastInfo } from './util';
@@ -82,34 +83,42 @@ export const Podcasts = ({ podcasts, setPodcasts, setCurrentPodcast }: Props) =>
               event.preventDefault();
 
               if (podcastsURL.match(urlPattern)) {
-                fetchPodcasts()
-                  .then(data => {
+                const pendingPodcasts = fetchPodcasts()
+
+                toast.promise(pendingPodcasts, {
+                  loading: 'Fetching Podcast...',
+                  success: data => {
                     if (window.DOMParser) {
                       const xmlData = new DOMParser()
                         .parseFromString(data, 'text/xml');
 
-                      setPodcasts(podcasts => {
-                        const newPodcast = parsePodcastInfo(xmlData, podcastsURL);
+                      const newPodcast = parsePodcastInfo(xmlData, podcastsURL);
+                      const isUniquePodcast = !podcasts.find(podcast => podcast.url === newPodcast.url);
 
-                        const isUniquePodcast = !podcasts.find(podcast => podcast.url === newPodcast.url);
+                      setPodcastsURL('');
 
-                        if (isUniquePodcast) {
+                      if (isUniquePodcast) {
+                        setPodcasts(podcasts => {
                           return [
                             ...podcasts,
                             newPodcast,
                           ];
-                        } else {
-                          return podcasts;
-                        }
-                      });
-                    }
-                  })
-                  .then(() => setPodcastsURL(''))
-                  .catch(error => {
-                    console.error(error);
+                        });
 
+                        return 'Podcast Loaded';
+                      } else {
+                        return 'Podcast Already Added';
+                      }
+                    } else {
+                      throw new Error('No DOM Parser was found! Only browser environments are supported.');
+                    }
+                  },
+                  error: (error) => {
                     showBoundary(error);
-                  });
+
+                    return `There was a problem fetching the podcast: ${error.toString()}`;
+                  },
+                });
 
                 return true;
               } else {
