@@ -1,5 +1,5 @@
 import type { Dispatch, SetStateAction } from 'react';
-import { useRouteNode } from 'react-router5';
+import { useRouter, useRouteNode } from 'react-router5';
 
 import { Episodes, type EpisodeInfo } from 'pages/episodes';
 import type { PodcastInfo } from 'pages/podcasts';
@@ -19,31 +19,43 @@ export const Content = ({ podcasts, setPodcasts, currentPodcast, setCurrentPodca
   const { route } = useRouteNode('');
   const topRouteName = route?.name.split('.')[0]
 
-  switch (topRouteName) {
-    case 'home': {
-      return (
-        <Podcasts
-          podcasts={podcasts}
-          setPodcasts={setPodcasts}
-          setCurrentPodcast={setCurrentPodcast}
-        />
-      );
-    };
+  const router = useRouter();
 
-    case 'podcast': {
-      return (
-        <Episodes
-          episodes={currentPodcast?.episodes || []}
-          setEpisodePlaying={setEpisodePlaying}
-        />
-      );
-    };
+  const renderRoute = () => {
+    switch (topRouteName) {
+      case 'home': {
+        return (
+          <Podcasts
+            podcasts={podcasts}
+            setPodcasts={setPodcasts}
+            setCurrentPodcast={setCurrentPodcast}
+          />
+        );
+      };
 
-    default: {
-      return (
-        <NotFound />
-      );
+      case 'podcast': {
+        if (!currentPodcast) {
+          router.navigate('home');
+
+          return renderRoute();
+        } else {
+          return (
+            <Episodes
+              episodes={currentPodcast?.episodes || []}
+              setEpisodePlaying={setEpisodePlaying}
+            />
+          );
+        }
+      };
+
+      default: {
+        return (
+          <NotFound />
+        );
+      }
     }
-  }
+  };
+
+  return renderRoute();
 };
 
