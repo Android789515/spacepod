@@ -69,7 +69,7 @@ export const parsePodcastInfo = (xmlData: Document, podcastURL: string): Podcast
       description,
       publishDate,
       podcastTitle,
-      authors: authors.split(' '),
+      authors: [authors],
     };
   });
 
