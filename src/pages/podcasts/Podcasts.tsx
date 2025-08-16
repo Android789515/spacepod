@@ -1,10 +1,10 @@
 import type { Dispatch, SetStateAction } from 'react';
 import { useState } from 'react';
 import { useErrorBoundary } from 'react-error-boundary';
-import toast from 'react-hot-toast';
+import toast from 'react-hot-toast'; 
 
 import type { EpisodeInfo } from 'pages/episodes';
-import { urlPattern, parsePodcastInfo } from './util';
+import { urlPattern, fetchPodcast } from './util/io';
 
 import styles from './Podcasts.module.css';
 
@@ -34,31 +34,6 @@ interface Props {
 export const Podcasts = ({ podcasts, setPodcasts, setCurrentPodcast }: Props) => {
   const [ podcastsURL, setPodcastsURL ] = useState('');
 
-  const fetchPodcasts = async () => {
-    const slashIndicator = ':';
-
-    const destination = podcastsURL.split('https://')[ 1 ]
-      .split('')
-      .map(char => char === '/' ? slashIndicator : char)
-      .join('');
-
-    const isDev = import.meta.env.DEV;
-    const hostname = isDev ? 'http://localhost:8080' : `${import.meta.env.VITE_SERVER_ADDRESS}`;
-
-    const route = `${hostname}/podcast-${destination}`;
-
-    const response = await fetch(route, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'text/xml',
-      },
-    });
-
-    const xml = await response.text();
-
-    return xml;
-  };
-
   const [ searchValue, setSearchValue ] = useState('');
 
   const [ selectMode, setSelectMode ] = useState(false);
@@ -83,47 +58,31 @@ export const Podcasts = ({ podcasts, setPodcasts, setCurrentPodcast }: Props) =>
               event.preventDefault();
 
               if (podcastsURL.match(urlPattern)) {
-                const pendingPodcasts = fetchPodcasts()
+                const pendingPodcast = fetchPodcast(podcastsURL);
 
-                toast.promise(pendingPodcasts, {
+                toast.promise(pendingPodcast, {
                   loading: 'Fetching Podcast...',
-                  success: data => {
-                    if (window.DOMParser) {
-                      const xmlData = new DOMParser()
-                        .parseFromString(data, 'text/xml');
+                  success: podcast => {
+                    const isUniquePodcast = !podcasts.find(currentPodcast => currentPodcast.url === podcast.url);
 
-                      const newPodcast = parsePodcastInfo(xmlData, podcastsURL);
-                      const isUniquePodcast = !podcasts.find(podcast => podcast.url === newPodcast.url);
-
+                    if (isUniquePodcast) {
+                      setPodcasts(prevPodcasts => [...prevPodcasts, podcast]);
                       setPodcastsURL('');
 
-                      if (isUniquePodcast) {
-                        setPodcasts(podcasts => {
-                          return [
-                            ...podcasts,
-                            newPodcast,
-                          ];
-                        });
-
-                        return 'Podcast Loaded';
-                      } else {
-                        return 'Podcast Already Added';
-                      }
+                      return 'Added Podcast';
                     } else {
-                      throw new Error('No DOM Parser was found! Only browser environments are supported.');
+                      return 'Podcast Already Added';
                     }
                   },
-                  error: (error) => {
+                  error: error => {
                     showBoundary(error);
 
-                    return `There was a problem fetching the podcast: ${error.toString()}`;
+                    return `An error occured: ${error.toString()}`;
                   },
                 });
-
-                return true;
-              } else {
-                return false;
               }
+
+              setPodcastsURL('');
             }}
           />
         </>
