@@ -37,7 +37,7 @@ export const AddPodcastModal = ({ show, setShow, podcastsURL, setPodcastsURL, ..
           <h2
             className={styles.labelTitle}
           >
-            Enter URL
+            RSS Feed URL
           </h2>
         </label>
 
