@@ -3,5 +3,13 @@
   grid-template-rows: max-content max-content 10em;
 
   min-height: 100vh;
+
+  background: var(--background);
+}
+
+.toaster.toaster {
+  color: inherit;
+
+  background: var(--background);
 }
 
