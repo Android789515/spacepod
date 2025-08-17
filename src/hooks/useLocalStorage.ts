@@ -5,28 +5,39 @@ interface HookConfig<DataType> {
   readonly defaultValue: DataType;
 }
 
+const migrateOldState = <DataType extends object>(stringifiedState: string) => {
+  const state = JSON.parse(stringifiedState);
+
+  if (Array.isArray(state)) {
+    const items = state as DataType[];
+
+    return items.map(entry => {
+      const isOldState = !('url' in entry);
+
+      if (isOldState) {
+        return {
+          ...entry,
+          url: '',
+        };
+      } else {
+        return entry;
+      }
+    });
+  } else {
+    return state;
+  }
+};
+
 const getOrDefault = <DataType>({ key, defaultValue }: HookConfig<DataType>) => {
   return () => {
     const item = localStorage.getItem(key);
 
     if (item) {
-      const data = JSON.parse(item);
-
-      return 'setData' in data
-        ? new Set(data.setData)
-        : data;
+      return migrateOldState(item);
     } else {
       return defaultValue;
     }
   };
-};
-
-const convertSet = <DataType>(data: Set<DataType> | any) => {
-  return data instanceof Set
-    ? {
-      setData: [...data],
-    }
-    : data;
 };
 
 export const useLocalStorage = <DataType>(config: HookConfig<DataType>) => {
@@ -38,7 +49,7 @@ export const useLocalStorage = <DataType>(config: HookConfig<DataType>) => {
     _setData(newData);
 
     localStorage.setItem(config.key, JSON.stringify(
-      convertSet(newData)
+      newData
     ));
   };
 
