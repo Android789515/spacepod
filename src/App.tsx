@@ -67,7 +67,11 @@ export const App = () => {
         />
       )}
 
-      <Toaster />
+      <Toaster
+        toastOptions={{
+          className: styles.toaster,
+        }}
+      />
     </div>
   );
 };
