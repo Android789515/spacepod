@@ -42,12 +42,13 @@ export const AddPodcastModal = ({ show, setShow, podcastsURL, setPodcastsURL, ..
         </label>
 
         <Button
+          customStyles={styles.closeButton}
           onClick={() => setShow(false)}
         >
           <img
             src={closeIcon}
             alt='Close Modal'
-            className={styles.closeButton}
+            className={styles.closeButtonIcon}
           />
         </Button>
 
