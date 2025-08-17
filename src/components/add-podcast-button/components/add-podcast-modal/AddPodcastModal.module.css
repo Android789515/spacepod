@@ -1,11 +1,9 @@
 .modal {
+  background: #23222a;
   padding: 1em 1.25em;
+
   border: none;
   border-radius: var(--borderRadius);
-}
-
-:root[style*='color-scheme: dark'] .modal {
-  background: #333;
 }
 
 .modalContent {
@@ -28,16 +26,16 @@
   border-radius: var(--borderRadius);
 }
 
-:root[style*='color-scheme: dark;'] .closeButton {
+:root[style*='color-scheme: dark;'] .closeButtonIcon {
   filter: invert(1);
 }
 
-.closeButton:focus,
-.closeButton:hover {
+.closeButton.closeButton:focus,
+.closeButton.closeButton:hover {
   background: var(--buttonFocusBackground);
 }
 
-.closeButton:active {
+.closeButton.closeButton:active {
   background: var(--buttonActiveBackground);
 }
 
