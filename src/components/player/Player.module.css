@@ -2,7 +2,7 @@
   position: fixed;
   left: 0;
   right: 0;
-  bottom:  1em;
+  bottom: 1em;
 
   display: grid;
   justify-content: center;
@@ -14,10 +14,10 @@
   grid-template-columns: 80vw;
   justify-content: center;
 
-  background: var(--playerBackground);
+  background: var(--widgetBackground);
   padding: 1em 1em;
 
-  border: var(--playerBorder);
+  border: var(--widgetBorder);
   border-radius: var(--borderRadius);
 }
 
@@ -42,4 +42,3 @@
     grid-template-columns: 22em;
   }
 }
-
