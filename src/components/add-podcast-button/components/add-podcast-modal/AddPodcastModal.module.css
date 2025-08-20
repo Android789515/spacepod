@@ -1,5 +1,5 @@
 .modal {
-  background: #23222a;
+  background: var(--widgetBackground);
   padding: 1em 1.25em;
 
   border: none;
@@ -32,11 +32,11 @@
 
 .closeButton.closeButton:focus,
 .closeButton.closeButton:hover {
-  background: var(--buttonFocusBackground);
+  background: var(--buttonFocusBackgroundOnWidget);
 }
 
 .closeButton.closeButton:active {
-  background: var(--buttonActiveBackground);
+  background: var(--buttonActiveBackgroundOnWidget);
 }
 
 .input {

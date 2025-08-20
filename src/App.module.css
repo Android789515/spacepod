@@ -10,6 +10,6 @@
 .toaster.toaster {
   color: inherit;
 
-  background: var(--background);
+  background: var(--widgetBackground);
 }
 
