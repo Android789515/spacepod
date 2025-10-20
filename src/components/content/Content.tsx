@@ -37,12 +37,16 @@ export const Content = ({ podcasts, setPodcasts, currentPodcast, setCurrentPodca
         if (!currentPodcast) {
           router.navigate('home');
 
+          // TODO: Find fix for infinite recursion.
           return renderRoute();
         } else {
           return (
             <Episodes
               episodes={currentPodcast?.episodes || []}
               setEpisodePlaying={setEpisodePlaying}
+              podcastURL={currentPodcast.url}
+              setPodcasts={setPodcasts}
+              setCurrentPodcast={setCurrentPodcast}
             />
           );
         }
