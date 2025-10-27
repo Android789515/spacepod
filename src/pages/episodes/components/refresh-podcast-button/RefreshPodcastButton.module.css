@@ -1,4 +1,6 @@
 .refreshButton.refreshButton {
+  color: #fff;
+
   grid-row: 3;
 
   background: var(--accentColor);
