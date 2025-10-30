@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 import { ErrorBoundary } from 'react-error-boundary';
 import { Toaster } from 'react-hot-toast';
@@ -39,7 +39,11 @@ export const App = () => {
     key: 'spacepod-current-podcast',
     defaultValue: null,
   });
-  const [ episodePlaying, setEpisodePlaying ] = useState<EpisodeInfo | null>(null);
+
+  const [ episodePlaying, setEpisodePlaying ] = useLocalStorage<EpisodeInfo | null>({
+    key: 'spacepod-episode-playing',
+    defaultValue: null,
+  });
 
   return (
     <div

@@ -40,14 +40,14 @@ const getOrDefault = <DataType>({ key, defaultValue }: HookConfig<DataType>) => 
   };
 };
 
-export const useLocalStorage = <DataType>(config: HookConfig<DataType>) => {
-  const [ data, _setData ] = useState(getOrDefault(config));
+type Reducer<DataType> = (prevData: DataType) => DataType;
 
-  type Reducer = (prevData: DataType) => DataType;
+export const useLocalStorage = <DataType>(config: HookConfig<DataType>): [ DataType, (dataOrSetter: DataType | Reducer<DataType>) => void ] => {
+  const [ data, _setData ] = useState<DataType>(getOrDefault(config));
 
-  const setData = (dataOrSetter: DataType | Reducer) => {
+  const setData = (dataOrSetter: DataType | Reducer<DataType>) => {
     const newData = typeof dataOrSetter === 'function'
-      ? (dataOrSetter as Reducer)(data)
+      ? (dataOrSetter as Reducer<DataType>)(data)
       : dataOrSetter;
 
     _setData(newData);
