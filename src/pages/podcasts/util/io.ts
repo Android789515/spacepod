@@ -5,7 +5,7 @@ export const urlPattern = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-
 export const fetchPodcast = async (url: string) => {
   const slashIndicator = ':';
 
-  const destination = url.split('https://')[ 1 ]
+  const destination = url.split('https://')[1]
     .split('')
     .map(char => char === '/' ? slashIndicator : char)
     .join('');
