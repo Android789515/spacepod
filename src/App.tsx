@@ -35,7 +35,10 @@ export const App = () => {
     defaultValue: [],
   });
 
-  const [ currentPodcast, setCurrentPodcast ]= useState<PodcastInfo | null>(null);
+  const [ currentPodcast, setCurrentPodcast ] = useLocalStorage<PodcastInfo | null>({
+    key: 'spacepod-current-podcast',
+    defaultValue: null,
+  });
   const [ episodePlaying, setEpisodePlaying ] = useState<EpisodeInfo | null>(null);
 
   return (
