@@ -1,0 +1,69 @@
+.controlsArea {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 1em;
+
+  display: grid;
+  justify-content: center;
+
+  pointer-events: none;
+
+  padding: 0 1em;
+}
+
+.controlsPanel {
+  display: grid;
+  grid-template-rows: auto .75em;
+  grid-template-columns: 3em auto;
+  column-gap: 1em;
+  align-items: center;
+
+  pointer-events: all;
+
+  background: var(--widgetBackground);
+  padding: 1em 1em 1.25em 1em;
+
+  border-radius: var(--borderRadius);
+}
+
+.playbackButton,
+.coverArt {
+  grid-row: 1 / span 2;
+  grid-column: 1;
+
+  aspect-ratio: 1 / 1;
+}
+
+.playbackButton {
+  opacity: 0;
+
+  z-index: 1;
+
+  background: #333333bb;
+}
+
+.playbackButton:focus,
+.playbackButton:hover {
+  opacity: 1;
+}
+
+.playbackIcon {
+  filter: invert(1);
+
+  scale: .75;
+}
+
+.coverArt {
+  background: #fff;
+  border-radius: var(--borderRadius);
+}
+
+.title {
+  font-size: 1rem;
+  text-overflow: ellipsis;
+
+  white-space: nowrap;
+
+  overflow: hidden;
+}

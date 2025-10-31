@@ -1,0 +1,15 @@
+.barBackground {
+  pointer-events: none;
+
+  height: 100%;
+
+  background: var(--background);
+  border-radius: var(--borderRadius);
+}
+
+.barProgress {
+  height: 100%;
+
+  background: var(--accentColor);
+  border-radius: var(--borderRadius);
+}

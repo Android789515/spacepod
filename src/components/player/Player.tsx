@@ -1,3 +1,7 @@
+import toast from 'react-hot-toast';
+import type { Dispatch, ReactNode, SetStateAction } from 'react';
+import { useState, useRef, useEffect } from 'react';
+
 import type { EpisodeInfo } from 'pages/episodes';
 import type { TimeStamp } from 'pages/podcasts/util';
 import { toTimeStamp, timeStampToSeconds } from 'pages/podcasts/util';
@@ -7,73 +11,105 @@ import styles from './Player.module.css';
 
 interface Props {
   readonly episodePlaying: EpisodeInfo;
+  readonly render: (props: {
+    episodeInfo: EpisodeInfo;
+    playerInfo: PlayerInfo;
+    setPlayerInfo: Dispatch<SetStateAction<PlayerInfo>>;
+  }) => ReactNode;
 }
 
 interface PlayerInfo {
   readonly currentTime: TimeStamp;
   readonly duration: TimeStamp;
+  readonly playback: 'paused' | 'playing';
 }
 
-export const Player = ({ episodePlaying }: Props) => {
+export const Player = ({ episodePlaying, render }: Props) => {
   const [ playerInfo, setPlayerInfo ] = useLocalStorage<PlayerInfo>({
     key: 'spacepod-player-info',
     defaultValue: {
       currentTime: toTimeStamp(0),
       duration: toTimeStamp(0),
+      playback: 'paused',
     },
   });
 
+  const [ loadingToastID, setLoadingToastID ] = useState('');
+
+  useEffect(() => {
+    const loadingToast = toast.loading('Queueing Podcast...');
+
+    setLoadingToastID(loadingToast);
+
+    return () => {
+      toast.dismiss(loadingToast);
+
+      setLoadingToastID('');
+    };
+  }, [ episodePlaying.id ]);
+
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  useEffect(() => {
+    if (playerInfo.playback === 'paused') {
+      audioRef.current?.pause();
+    } else {
+      audioRef.current?.play();
+    }
+  }, [ playerInfo.playback ]);
+
+  useEffect(() => {
+    const currentTimeInSeconds = timeStampToSeconds(playerInfo.currentTime);
+
+    if (audioRef.current && (
+      currentTimeInSeconds > audioRef.current.currentTime + 1
+      || currentTimeInSeconds < audioRef.current.currentTime - 1
+    )) {
+      audioRef.current.currentTime = currentTimeInSeconds;
+    }
+  }, [ playerInfo.currentTime ]);
+
   return (
-    <aside
-      className={styles.playerArea}
-    >
-      <div
-        className={styles.player}
-      >
-        <div
-        >
-          <h3
-            className={styles.contentTitle}
-          >
-            {episodePlaying.podcastTitle}
-          </h3>
+    <>
+      {render({
+        episodeInfo: episodePlaying,
+        playerInfo,
+        setPlayerInfo,
+      })}
 
-          <p
-            className={styles.contentDescription}
-          >
-            {episodePlaying.title}
-          </p>
-        </div>
+      <audio
+        src={episodePlaying.url}
+        className={styles.audio}
+        ref={audioRef}
+        onLoadedMetadata={event => {
+          toast.dismiss(loadingToastID);
+          setLoadingToastID('');
 
-        <audio
-          src={episodePlaying.url}
-          controls
-          className={styles.audio}
-          onLoadedMetadata={event => {
-            const audioElement = event.target as HTMLAudioElement;
+          toast.success('Podcast Ready To Play');
 
-            setPlayerInfo(player => {
-              return {
-                ...player,
-                duration: toTimeStamp(audioElement.duration),
-              };
-            });
+          const audioElement = event.target as HTMLAudioElement;
 
-            audioElement.currentTime = timeStampToSeconds(playerInfo.currentTime);
-          }}
-          onTimeUpdate={event => {
-            const audioElement = event.target as HTMLAudioElement;
+          setPlayerInfo(player => {
+            return {
+              ...player,
+              duration: toTimeStamp(audioElement.duration),
+            };
+          });
 
-            setPlayerInfo(player => {
-              return {
-                ...player,
-                currentTime: toTimeStamp(audioElement.currentTime),
-              };
-            });
-          }}
-        />
-      </div>
-    </aside>
+          audioElement.currentTime = timeStampToSeconds(playerInfo.currentTime);
+        }}
+        onTimeUpdate={event => {
+          const audioElement = event.target as HTMLAudioElement;
+
+          setPlayerInfo(player => {
+            return {
+              ...player,
+              currentTime: toTimeStamp(audioElement.currentTime),
+            };
+          });
+        }}
+      />
+    </>
   );
 };
 

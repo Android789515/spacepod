@@ -13,6 +13,7 @@ import { Header } from 'components/header';
 import { Content } from 'components/content';
 import { Error } from 'pages/error';
 import { Player } from 'components/player';
+import { MediaControls } from 'components/media-controls';
 
 export interface Settings {
   colorScheme: 'light' | 'dark';
@@ -71,6 +72,28 @@ export const App = () => {
       {episodePlaying && (
         <Player
           episodePlaying={episodePlaying}
+          render={({ episodeInfo, playerInfo, setPlayerInfo }) => {
+            return (
+              <MediaControls
+                episodeInfo={episodeInfo}
+                duration={playerInfo.duration}
+                currentTime={playerInfo.currentTime}
+                playback={playerInfo.playback}
+                setPlayback={playback => setPlayerInfo(prev => {
+                  return {
+                    ...prev,
+                    playback,
+                  };
+                })}
+                setCurrentTime={timeStamp => setPlayerInfo(prev => {
+                  return {
+                    ...prev,
+                    currentTime: timeStamp,
+                  };
+                })}
+              />
+            );
+          }}
         />
       )}
 
