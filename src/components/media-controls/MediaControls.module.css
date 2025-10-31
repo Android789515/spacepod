@@ -17,7 +17,6 @@
   grid-template-rows: auto 1.3em;
   grid-template-columns: 3.5em auto;
   column-gap: 1em;
-  align-items: start;
 
   pointer-events: all;
 
@@ -72,7 +71,7 @@
 
 @media (min-width: 28.125em) {
   .controlsPanel {
-    grid-template-rows: auto 1.6em;
+    grid-template-rows: auto 1.5em;
     grid-template-columns: 4em auto;
   }
 }
