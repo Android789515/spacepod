@@ -20,7 +20,7 @@
 
   scale: 0;
 
-  width: 1.8em;
+  width: 2em;
 
   background: var(--accentColor);
 
@@ -39,10 +39,10 @@
 
 @media (min-width: 28.125em) {
   .barArea.barArea {
-    --spacing: .3em;
+    --spacing: .28em;
   }
 
   .barSlider.barSlider {
-    width: 2.1em;
+    width: 2.3em;
   }
 }
