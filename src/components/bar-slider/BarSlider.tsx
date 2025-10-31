@@ -1,4 +1,4 @@
-import type { MouseEvent } from 'react';
+import type { MouseEvent, TouchEvent } from 'react';
 import { useState } from 'react';
 
 import styles from './BarSlider.module.css';
@@ -15,13 +15,20 @@ interface Props {
 export const BarSlider = ({ fullValue, currentValue, onValueUpdate }: Props) => {
   const [ mouseDown, setMouseDown ] = useState(false);
 
-  const updateValue = (event: MouseEvent) => {
+  const updateValue = (event: MouseEvent | TouchEvent) => {
     const bar = event.target as HTMLDivElement;
 
     const { left: barMin, right: barMax } = bar.getBoundingClientRect();
 
     const barSize = barMax - barMin;
-    const distanceFromMin = event.clientX - barMin;
+
+    const isTouchEvent = Object.keys(event).includes('targetTouches');
+
+    const clientX = isTouchEvent
+      ? (event as TouchEvent).targetTouches[ 0 ].clientX
+      : (event as MouseEvent).clientX;
+
+    const distanceFromMin = clientX - barMin;
 
     const percentToSet = distanceFromMin / barSize;
 
@@ -38,13 +45,26 @@ export const BarSlider = ({ fullValue, currentValue, onValueUpdate }: Props) => 
 
         setMouseDown(true);
       }}
+      onTouchStart={event => {
+        updateValue(event);
+
+        setMouseDown(true);
+      }}
       onMouseUp={() => {
+        setMouseDown(false);
+      }}
+      onTouchEnd={() => {
         setMouseDown(false);
       }}
       onMouseLeave={() => {
         setMouseDown(false);
       }}
       onMouseMove={event => {
+        if (mouseDown) {
+          updateValue(event);
+        }
+      }}
+      onTouchMove={event => {
         if (mouseDown) {
           updateValue(event);
         }
