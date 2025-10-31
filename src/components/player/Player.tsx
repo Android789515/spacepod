@@ -7,8 +7,6 @@ import type { TimeStamp } from 'pages/podcasts/util';
 import { toTimeStamp, timeStampToSeconds } from 'pages/podcasts/util';
 import { useLocalStorage } from 'hooks/useLocalStorage';
 
-import styles from './Player.module.css';
-
 interface Props {
   readonly episodePlaying: EpisodeInfo;
   readonly render: (props: {
@@ -79,7 +77,6 @@ export const Player = ({ episodePlaying, render }: Props) => {
 
       <audio
         src={episodePlaying.url}
-        className={styles.audio}
         ref={audioRef}
         onLoadedMetadata={event => {
           toast.dismiss(loadingToastID);
