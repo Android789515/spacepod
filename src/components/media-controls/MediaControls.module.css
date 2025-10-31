@@ -16,7 +16,7 @@
   display: grid;
   grid-template-rows: auto 1.3em;
   grid-template-columns: 3.5em auto;
-  column-gap: 1em;
+  column-gap: 1.3em;
 
   pointer-events: all;
 
