@@ -14,6 +14,7 @@ export const Link = ({ isLinkableElement, ...rest }: Props) => {
       {...rest}
       router={rest.router}
       routeName={rest.routeName}
+      routeParams={rest.routeParams}
       className={`
         ${isLinkableElement && styles.linkableElement}
       `}

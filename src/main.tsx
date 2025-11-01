@@ -14,10 +14,12 @@ import { ErrorBoundary } from 'react-error-boundary';
 
 const routes: Route[] = [
   { name: 'home', path: '/' },
-  { name: 'podcast', path: '/podcast' },
+  { name: 'podcast', path: '/podcast:podcast' },
 ];
 
-const router = createRouter(routes);
+const router = createRouter(routes, {
+  defaultRoute: 'home',
+});
 
 router.usePlugin(browserPlugin());
 

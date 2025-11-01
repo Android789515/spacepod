@@ -34,11 +34,9 @@ export const Content = ({ podcasts, setPodcasts, currentPodcast, setCurrentPodca
       };
 
       case 'podcast': {
-        if (!currentPodcast) {
-          router.navigate('home');
+        const hasParams = Object.values(route.params).length > 0;
 
-          return renderRoute();
-        } else {
+        if (hasParams && currentPodcast) {
           return (
             <Episodes
               episodes={currentPodcast?.episodes || []}
@@ -48,6 +46,10 @@ export const Content = ({ podcasts, setPodcasts, currentPodcast, setCurrentPodca
               setCurrentPodcast={setCurrentPodcast}
             />
           );
+        } else {
+          router.navigate('home');
+
+          return renderRoute();
         }
       };
 
