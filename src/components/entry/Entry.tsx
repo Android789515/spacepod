@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import defaultCoverArt from 'assets/defaultCoverArt.svg';
 import styles from './Entry.module.css';
 
@@ -13,6 +15,8 @@ interface Props extends HTMLAttributes<HTMLButtonElement> {
 }
 
 export const Entry = ({ title, coverArt, authors, selectMode, selected, ...rest }: Props) => {
+  const [ isCoverArtLoaded, setIsCoverArtLoaded ] = useState(false);
+
   return (
     <Button
       {...rest}
@@ -30,9 +34,10 @@ export const Entry = ({ title, coverArt, authors, selectMode, selected, ...rest 
       />
 
       <img
-        src={coverArt || defaultCoverArt}
+        src={isCoverArtLoaded && coverArt || defaultCoverArt}
         alt='Cover Art'
         className={styles.coverArt}
+        onLoad={() => setIsCoverArtLoaded(true)}
       />
 
       <aside
