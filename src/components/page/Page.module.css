@@ -34,8 +34,14 @@
 
 @media (min-width: 28.125em) {
   .pageHeaderLayout {
+    font-size: 1.1rem;
+
     grid-template-columns: max-content var(--search-bar-width) max-content;
     grid-auto-flow: initial;
+  }
+
+  .pageTitle {
+    font-size: 2.1rem;
   }
 }
 
