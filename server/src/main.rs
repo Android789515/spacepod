@@ -1,7 +1,7 @@
 use std::io;
 
 use actix_cors::Cors;
-use actix_web::{get, web, App, HttpServer};
+use actix_web::{get, web::{self, Redirect}, App, HttpServer};
 
 #[get("/podcast-{url}")]
 async fn get_podcast(path: web::Path<String>) -> actix_web::Result<String> {
@@ -43,6 +43,9 @@ async fn main() -> io::Result<()> {
                 actix_files::Files::new("/", "../dist")
                     .index_file("index.html")
             )
+            .default_service(web::to(|| async {
+                Redirect::to("/")
+            }))
     })
     .bind(("0.0.0.0", 8080))?
     .run()
