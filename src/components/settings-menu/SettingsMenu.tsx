@@ -76,11 +76,8 @@ export const SettingsMenu = ({ settings, setSettings, podcasts, setPodcasts }: P
           <div
             className={styles.colorSchemeValue}
           >
-            <span>
-              {settings.colorScheme}
-            </span>
-
             <ToggleSwitch
+              text={settings.colorScheme}
               toggled={settings.colorScheme === 'dark'}
               onClick={() => {
                 setSettings(prevSettings => {

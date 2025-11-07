@@ -1,15 +1,27 @@
 .toggleSwitch.toggleSwitch {
-  --width: 2.5em;
+  display: grid;
+  align-items: center;
 
-  width: var(--width);
-  height: calc(var(--width) / 2);
+  background: var(--background);
+  padding: .25em;
 
-  background: #ccc;
-  border-radius: 100px;
+  border-radius: var(--borderRadius);
 }
 
-:root[style*='color-scheme: dark;'] .toggleSwitch.toggleSwitch {
-  background: #4d4c4d;
+.toggleSwitch.toggleSwitch > * {
+  grid-row: 1;
+  grid-column: 1;
+}
+
+.toggleSwitchText {
+  font-weight: 700;
+  text-align: right;
+
+  margin-right: .25em;
+}
+
+:root[style*='color-scheme: dark;'] .toggleSwitchText {
+  opacity: .4;
 }
 
 .knob {
@@ -17,16 +29,31 @@
 
   aspect-ratio: 1 / 1;
 
-  height: 90%;
+  width: 1em;
 
-  background: #fff;
+  background: var(--buttonFocusBackground);
 
-  border-radius: 100px;
+  border-radius: var(--borderRadius);
 
   margin-left: 2px;
+
+  transform: scale(1);
+  transition: margin-left 250ms, transform 250ms;
+}
+
+.toggleSwitch.toggleSwitch:active .knob {
+  transform: scale(.8);
 }
 
 .knobToggled {
-  margin-left: calc(100% - ((var(--width) * .9) / 2) - 2px);
+  background: var(--accentColor);
+
+  margin-left: 3.8em;
 }
 
+.knobToggled ~ .toggleSwitchText {
+  text-align: left;
+
+  margin-right: 0;
+  margin-left: .25em;
+}

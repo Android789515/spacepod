@@ -16,7 +16,7 @@
 
   height: 100vh;
 
-  background: var(--background);
+  background: var(--widgetBackground);
   padding: 1em;
   border: var(--widgetBorder);
 
@@ -31,16 +31,11 @@
 }
 
 .colorSchemeValue {
-  color: dodgerblue;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  display: grid;
+  grid-template-rows: 1.75em;
+  grid-template-columns: 5.5em;
 
   width: 100%;
-}
-
-:root[style*='color-scheme: dark;'] .colorSchemeValue {
-  color: violet;
 }
 
 .saveLoadPodcasts {
