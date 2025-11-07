@@ -10,8 +10,7 @@ export const fetchPodcast = async (url: string) => {
     .map(char => char === '/' ? slashIndicator : char)
     .join('');
 
-  const isDev = import.meta.env.DEV;
-  const hostname = isDev ? 'http://localhost:8080' : `${import.meta.env.VITE_SERVER_ADDRESS}`;
+  const hostname = import.meta.env.VITE_SERVER_ADDRESS;
 
   const route = `${hostname}/podcast-${destination}`;
 
