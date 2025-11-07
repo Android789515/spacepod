@@ -1,14 +1,16 @@
 :root {
+  --textColor: #333;
+
   --accentColor: #ff4f00;
 
-  --buttonFocusBackground: #eee;
-  --buttonActiveBackground: #e6e6e6;
+  --buttonFocusBackground: #ebeaf3;
+  --buttonActiveBackground: #e7e2e3;
 
   --buttonFocusBackgroundOnWidget: var(--buttonFocusBackground);
   --buttonActiveBackgroundOnWidget: var(--buttonActiveBackground);
 
-  --widgetBackground: #eaeaea;
-  --widgetBorder: solid #33333322 1px;
+  --widgetBackground: #f7f7f7;
+  --widgetBorder: solid #e3e3e3 1px;
 
   --background: #fff;
 
@@ -16,14 +18,16 @@
 }
 
 :root[style*='color-scheme: dark;'] {
-  --buttonFocusBackground: #323232;
-  --buttonActiveBackground: #272727;
+  --textColor: #efefef;
 
-  --buttonFocusBackgroundOnWidget: #595959;
-  --buttonActiveBackgroundOnWidget: #4d4d4d;
+  --buttonFocusBackground: #4d4c4d;
+  --buttonActiveBackground: #464646;
 
-  --widgetBackground: #3d3d3d;
-  --widgetBorder: solid #eaeaea22 1px;
+  --buttonFocusBackgroundOnWidget: var(--buttonFocusBackground);
+  --buttonActiveBackgroundOnWidget: var(--buttonActiveBackground);
 
-  --background: #1c1b22;
+  --widgetBackground: #343535;
+  --widgetBorder: solid #191919 1px;
+
+  --background: #282828;
 }
