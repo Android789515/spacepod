@@ -18,7 +18,7 @@
 
   background: var(--widgetBackground);
   padding: 1em;
-  border: var(--widgetBorder);
+  border-left: var(--widgetBorder);
 
   margin: 0;
 
