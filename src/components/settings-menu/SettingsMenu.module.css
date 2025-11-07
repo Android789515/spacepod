@@ -18,6 +18,8 @@
 
   background: var(--background);
   padding: 1em;
+  border: var(--widgetBorder);
+
   margin: 0;
 
   transform: translateX(100%);
