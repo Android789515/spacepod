@@ -23,6 +23,7 @@
   background: var(--widgetBackground);
   padding: 1em 1em 1.25em 1em;
 
+  border: var(--widgetBorder);
   border-radius: var(--borderRadius);
 }
 
