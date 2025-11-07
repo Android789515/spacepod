@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "bun run build && cd server && echo \"Now serving at http://localhost:8080\" && cargo run && cd ..",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview"
