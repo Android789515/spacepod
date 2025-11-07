@@ -51,17 +51,22 @@
   grid-template-columns: 1.1em auto;
   align-items: center;
 
+  background: var(--buttonActiveBackground);
   padding: .2em .4em;
 
   border-radius: calc(var(--borderRadius) / 1.5);
 }
 
-.saveButton {
-  background: dodgerblue;
+.saveButton:focus,
+.saveButton:hover,
+.loadButton:focus,
+.loadButton:hover {
+  background: var(--accentColor);
 }
 
-.loadButton {
-  background: var(--accentColor);
+.saveButton:active,
+.loadButton:active {
+  background: var(--buttonActiveBackground);
 }
 
 .saveLoadButtonIcon {
