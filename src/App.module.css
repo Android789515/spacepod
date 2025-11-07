@@ -1,4 +1,6 @@
 .app {
+  color: var(--textColor);
+
   display: grid;
   grid-template-rows: max-content max-content 10em;
 
