@@ -7,7 +7,6 @@ import { Link } from 'components/link';
 
 interface Props {
   readonly id: string;
-  readonly url: string;
   readonly title: string;
   readonly coverArt: string;
   readonly authors: string[];
@@ -18,7 +17,6 @@ interface Props {
 
 export const Podcast = ({
   title,
-  url,
   coverArt,
   authors,
   onClick,
@@ -46,7 +44,9 @@ export const Podcast = ({
         router={router}
         routeName='podcast'
         routeParams={{
-          podcast: url,
+          podcast: '_' + title.toLowerCase()
+            .replaceAll(/[^a-zA-Z0-9]/g, '')
+            .replaceAll(' ', '-'),
         }}
         isLinkableElement
         onAuxClick={event => event.preventDefault()}
