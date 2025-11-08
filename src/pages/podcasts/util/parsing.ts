@@ -74,9 +74,9 @@ export const parsePodcastInfo = (xmlData: Document, podcastURL: string): Podcast
   });
 
   const [ coverArt ] = xmlData.getElementsByTagName('image');
-  const [ coverArtHref ] = parseContentFromTags(coverArt, [
+  const [ coverArtHref ] = coverArt ? parseContentFromTags(coverArt, [
     { name: 'url' },
-  ]);
+  ]) : '';
 
   return {
     id: newUUID(),
