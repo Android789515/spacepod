@@ -33,7 +33,7 @@
 
   aspect-ratio: 1 / 1;
 
-  border: solid 1px;
+  border: solid #efefef70 1px;
   border-radius: 100px;
 }
 
@@ -42,7 +42,8 @@
 }
 
 .selectButtonSelected.selectButtonSelected {
-  background: dodgerblue;
+  background: var(--accentColor);
+  border: none;
 }
 
 .info > * {
