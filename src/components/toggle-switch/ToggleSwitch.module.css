@@ -17,6 +17,8 @@
   font-weight: 700;
   text-align: right;
 
+  pointer-events: none;
+
   margin-right: .25em;
 }
 
