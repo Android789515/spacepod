@@ -5,20 +5,23 @@
   bottom: 1em;
 
   display: grid;
+  grid-template-columns: minmax(1em, 1fr) auto minmax(1em, 1fr);
   justify-content: center;
 
   pointer-events: none;
-
-  padding: 0 1em;
 }
 
 .controlsPanel {
+  grid-column: 2;
+
   display: grid;
   grid-template-rows: auto 1.3em;
   grid-template-columns: 3.5em auto;
   column-gap: 1.3em;
 
   pointer-events: all;
+
+  max-width: 100%;
 
   background: var(--widgetBackground);
   padding: 1em 1em 1.25em 1em;
