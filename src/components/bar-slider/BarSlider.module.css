@@ -28,7 +28,7 @@
   border-radius: var(--borderRadius);
 
   translate: -50% 0;
-  transition: scale 0;
+  transition: scale 0ms;
 }
 
 .barArea.barArea:focus .barSlider,
