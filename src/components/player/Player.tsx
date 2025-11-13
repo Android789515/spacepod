@@ -52,7 +52,7 @@ export const Player = ({ episodePlaying, render }: Props) => {
 
       setLoadingToastID('');
     };
-  }, [ episodePlaying.id, setPlayerInfo ]);
+  }, [ episodePlaying.id ]);
 
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
