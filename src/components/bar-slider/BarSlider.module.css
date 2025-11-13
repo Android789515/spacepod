@@ -25,6 +25,7 @@
 
   background: var(--accentColor);
 
+  border: solid #000 2px;
   border-radius: var(--borderRadius);
 
   translate: -50% 0;
