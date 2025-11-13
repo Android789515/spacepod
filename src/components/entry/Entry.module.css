@@ -33,15 +33,29 @@
 
   aspect-ratio: 1 / 1;
 
-  border: solid #efefef70 1px;
-  border-radius: 100px;
+  border-radius: var(--borderRadius);
 }
 
 .selectButtonShown.selectButtonShown {
   display: initial;
+
+  background: var(--buttonActiveBackground);
+
+  scale: 1;
+
+  transition: scale 75ms;
 }
 
-.selectButtonSelected.selectButtonSelected {
+.entry:active .selectButtonShown.selectButtonShown {
+  scale: .8;
+}
+
+button:focus .selectButtonShown.selectButtonShown,
+button:hover .selectButtonShown.selectButtonShown {
+  background: var(--background);
+}
+
+.selectButtonSelected.selectButtonSelected.selectButtonSelected.selectButtonSelected {
   background: var(--accentColor);
   border: none;
 }
