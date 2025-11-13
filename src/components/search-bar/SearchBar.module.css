@@ -8,3 +8,6 @@
   border-radius: var(--borderRadius);
 }
 
+.searchBar:focus {
+  outline: solid var(--textColor) 2px;
+}
