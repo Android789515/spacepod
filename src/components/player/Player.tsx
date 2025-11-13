@@ -52,6 +52,7 @@ export const Player = ({ episodePlaying, render }: Props) => {
 
       setLoadingToastID('');
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ episodePlaying.id ]);
 
   const audioRef = useRef<HTMLAudioElement | null>(null);
