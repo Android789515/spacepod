@@ -6,6 +6,8 @@
 
   --icons: initial;
 
+  --bounceInAnimation: cubic-bezier(.26, .53, .74, 1.48);
+
   --buttonFocusBackground: #ebeaf3;
   --buttonActiveBackground: #e7e2e3;
 

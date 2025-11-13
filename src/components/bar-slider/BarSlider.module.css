@@ -36,7 +36,7 @@
 .barArea.barArea:hover .barSlider {
   scale: 1;
 
-  transition: scale 250ms cubic-bezier(.26, .53, .74, 1.48);
+  transition: scale 250ms var(--bounceInAnimation);
 }
 
 @media (min-width: 28.125em) {
