@@ -41,6 +41,17 @@
 
 .input {
   grid-column: span 2;
+
+  padding: .17em;
+
+  border: solid var(--textColor) 1px;
+  border-radius: var(--borderRadius);
+
+  outline: none;
+}
+
+.input:focus {
+  border: solid #5294e2 2px;
 }
 
 @media (min-width: 24.375em) {
