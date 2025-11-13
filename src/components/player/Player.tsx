@@ -35,6 +35,14 @@ export const Player = ({ episodePlaying, render }: Props) => {
   const [ loadingToastID, setLoadingToastID ] = useState('');
 
   useEffect(() => {
+    setPlayerInfo(info => {
+      return {
+        ...info,
+        currentTime: toTimeStamp(0),
+        playback: 'paused',
+      };
+    });
+
     const loadingToast = toast.loading('Queueing Podcast...');
 
     setLoadingToastID(loadingToast);
@@ -44,7 +52,7 @@ export const Player = ({ episodePlaying, render }: Props) => {
 
       setLoadingToastID('');
     };
-  }, [ episodePlaying.id ]);
+  }, [ episodePlaying.id, setPlayerInfo ]);
 
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
