@@ -40,7 +40,7 @@ export const Entry = ({ title, coverArt, authors, selectMode, selected, ...rest 
         onLoad={() => setIsCoverArtLoaded(true)}
       />
 
-      <aside
+      <div
         className={styles.info}
       >
         <h4
@@ -54,7 +54,7 @@ export const Entry = ({ title, coverArt, authors, selectMode, selected, ...rest 
         >
           {authors.join(', ')}
         </p>
-      </aside>
+      </div>
     </Button>
   );
 };
