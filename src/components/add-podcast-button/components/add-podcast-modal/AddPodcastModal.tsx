@@ -54,6 +54,9 @@ export const AddPodcastModal = ({ show, setShow, podcastsURL, setPodcastsURL, ..
 
         <input
           id={inputID}
+          type='url'
+          placeholder='https://some-podcast.org/rss'
+          pattern='https://.*'
           className={styles.input}
           value={podcastsURL}
           onChange={event => setPodcastsURL(event.target.value)}
