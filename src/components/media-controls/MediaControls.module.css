@@ -44,6 +44,7 @@
   z-index: 1;
 
   background: #333333bb;
+  border-radius: var(--borderRadius);
 }
 
 .playbackButton:focus,
