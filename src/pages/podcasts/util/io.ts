@@ -21,6 +21,10 @@ export const fetchPodcast = async (url: string) => {
     },
   });
 
+  if (!response.ok) {
+    throw new Error(`The RSS feed could not be found or parsed for: ${url}.`);
+  }
+
   const xml = await response.text();
 
   if (window.DOMParser) {
