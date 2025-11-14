@@ -10,19 +10,29 @@ async fn get_podcast(path: web::Path<String>) -> actix_web::Result<String> {
         .map(|char| if char == ':' { '/' } else { char })
         .collect::<String>();
 
-    match reqwest::get(format!("https://{restructured_url}")).await {
+    let full_url = format!("https://{restructured_url}");
+
+    match reqwest::get(&full_url).await {
         Ok(response) => {
             match response.text().await {
                 Ok(content) => {
                     Ok(content)
                 },
                 Err(error) => {
-                    panic!("Incorrect url {error}");
+                    Err(actix_web::error::ErrorExpectationFailed(format!(
+                        "{} could not be parsed.\n\n{}",
+                        full_url,
+                        error,
+                    )))
                 },
             }
         },
         Err(error) => {
-            panic!("Incorrect url {error}");
+            Err(actix_web::error::ErrorNotFound(format!(
+                "No RSS feed content was found for {}\n\n{}",
+                full_url,
+                error,
+            )))
         },
     }
 }
