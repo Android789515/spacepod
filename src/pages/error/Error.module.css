@@ -8,11 +8,31 @@
 
 .layout {
   display: grid;
+  row-gap: 4em;
   justify-content: center;
+
+  max-width: 43.75em;
 }
 
 .title {
   font-size: 1.6rem;
+  text-align: center;
+
+  margin: 0;
+}
+
+.error {
+  font-family: monospace;
+  color: #fff;
+
+  white-space: pre-wrap;
+
+  background: #000;
+  padding: 1.25em;
+
+  border-radius: var(--borderRadius);
+
+  margin: 0;
 }
 
 .button {

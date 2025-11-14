@@ -3,7 +3,7 @@ import type { FallbackProps } from 'react-error-boundary';
 import styles from './Error.module.css';
 import { Button } from 'components/button';
 
-export const Error = ({ resetErrorBoundary }: FallbackProps) => {
+export const Error = ({ error, resetErrorBoundary }: FallbackProps) => {
   return (
     <div
       className={styles.page}
@@ -17,6 +17,12 @@ export const Error = ({ resetErrorBoundary }: FallbackProps) => {
           Something went wrong!
         </h1>
 
+        <p
+          className={styles.error}
+        >
+          {error.toString()}
+        </p>
+
         <Button
           className={styles.button}
           onClick={resetErrorBoundary}
@@ -27,4 +33,3 @@ export const Error = ({ resetErrorBoundary }: FallbackProps) => {
     </div>
   );
 };
-
