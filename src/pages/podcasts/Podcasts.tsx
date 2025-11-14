@@ -1,6 +1,5 @@
 import type { Dispatch, SetStateAction } from 'react';
 import { useState } from 'react';
-import { useErrorBoundary } from 'react-error-boundary';
 import toast from 'react-hot-toast'; 
 
 import type { EpisodeInfo } from 'pages/episodes';
@@ -39,8 +38,6 @@ export const Podcasts = ({ podcasts, setPodcasts, setCurrentPodcast }: Props) =>
   const [ selectMode, setSelectMode ] = useState(false);
   const [ selectedPodcasts, setSelectedPodcasts ] = useState<string[]>([]);
 
-  const { showBoundary } = useErrorBoundary();
-
   return (
     <Page
       title='Podcasts'
@@ -75,8 +72,6 @@ export const Podcasts = ({ podcasts, setPodcasts, setCurrentPodcast }: Props) =>
                     }
                   },
                   error: error => {
-                    showBoundary(error);
-
                     return `An error occured: ${error.toString()}`;
                   },
                 });
