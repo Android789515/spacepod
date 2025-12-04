@@ -1,9 +1,9 @@
 import { useState, type FormEvent } from 'react';
+import { Button } from '@android789515/gummy-ui';
 
 import addIcon from './assets/addIcon.svg';
 import styles from './AddPodcastButton.module.css';
 
-import { Button } from 'components/button';
 import { AddPodcastModal } from './components/add-podcast-modal';
 
 interface Props {
@@ -18,7 +18,11 @@ export const AddPodcastButton = ({ podcastsURL, setPodcastsURL, onSubmit }: Prop
   return (
     <>
       <Button
-        customStyles={styles.button}
+        fontSize='1rem'
+        variant='filled'
+        color='var(--accentColor)'
+        borderRadius='var(--borderRadius)'
+        className={styles.button}
         onClick={() => setModalShown(prev => !prev)}
       >
         <img

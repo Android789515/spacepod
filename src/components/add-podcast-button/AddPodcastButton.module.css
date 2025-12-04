@@ -1,6 +1,5 @@
 .button.button {
-  background: var(--accentColor);
-  border-radius: var(--borderRadius);
+  padding: 0;
 }
 
 .icon {
@@ -8,6 +7,6 @@
 
   aspect-ratio: 1 / 1;
 
-  width: 1.75em;
+  width: 1.95em;
 }
 

@@ -1,3 +1,5 @@
+import { BarSlider } from '@android789515/gummy-ui';
+
 import type { EpisodeInfo } from 'pages/episodes';
 import type { TimeStamp } from 'pages/podcasts/util';
 import { timeStampToSeconds, toTimeStamp } from 'pages/podcasts/util';
@@ -6,9 +8,6 @@ import defaultCoverArt from 'assets/defaultCoverArt.svg';
 import playIcon from './assets/play.svg';
 import pauseIcon from './assets/pause.svg';
 import styles from './MediaControls.module.css';
-
-import { Button } from 'components/button';
-import { BarSlider } from 'components/bar-slider';
 
 interface Props {
   readonly episodeInfo: EpisodeInfo;
@@ -20,6 +19,7 @@ interface Props {
 }
 
 export const MediaControls = ({ episodeInfo, duration, currentTime, setCurrentTime, playback, setPlayback }: Props) => {
+  console.log(timeStampToSeconds(duration), timeStampToSeconds(currentTime));
   return (
     <section
       className={styles.controlsArea}
@@ -27,8 +27,8 @@ export const MediaControls = ({ episodeInfo, duration, currentTime, setCurrentTi
       <div
         className={styles.controlsPanel}
       >
-        <Button
-          customStyles={styles.playbackButton}
+        <button
+          className={styles.playbackButton}
           onClick={() => {
             if (playback === 'paused') {
               setPlayback('playing');
@@ -42,7 +42,7 @@ export const MediaControls = ({ episodeInfo, duration, currentTime, setCurrentTi
             alt='Play/Pause'
             className={styles.playbackIcon}
           />
-        </Button>
+        </button>
 
         <img
           src={episodeInfo.coverArt || defaultCoverArt}
@@ -59,7 +59,9 @@ export const MediaControls = ({ episodeInfo, duration, currentTime, setCurrentTi
         <BarSlider
           fullValue={timeStampToSeconds(duration)}
           currentValue={timeStampToSeconds(currentTime)}
-          onValueUpdate={value => {
+          color='var(--accentColor)'
+          borderRadius='.35em'
+          onChange={value => {
             setCurrentTime(toTimeStamp(value));
           }}
         />

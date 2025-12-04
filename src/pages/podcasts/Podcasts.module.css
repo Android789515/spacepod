@@ -4,37 +4,17 @@
 }
 
 .buttons {
+  --podcastButtonsFontSize: 1rem;
+  font-size: var(--podcastButtonsFontSize);
+
   display: grid;
   grid-auto-flow: column;
   justify-content: space-between;
 }
 
-.selectButton.selectButton,
-.deleteButton.deleteButton {
-  color: #fff;
-
-  padding: .2em .4em;
-
-  border-radius: var(--borderRadius);
-}
-
-.selectButton.selectButton {
-  background: var(--accentColor);
-}
-
-.deleteButton.deleteButton {
-  visibility: hidden;
-
-  background: red;
-}
-
-.deleteButtonShown.deleteButtonShown {
-  visibility: visible;
-}
-
 @media (min-width: 28.125em) {
   .buttons {
-    font-size: 1.2rem;
+    --podcastButtonsFontSize: 1.2rem;
 
     width: 18.25em;
   }

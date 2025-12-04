@@ -1,5 +1,6 @@
 import type { Dispatch, SetStateAction } from 'react';
 import { useEffect, useRef, useState } from 'react';
+import { ToggleSwitch, Button } from '@android789515/gummy-ui';
 
 import type { Settings } from 'App';
 import type { PodcastInfo } from 'pages/podcasts';
@@ -9,9 +10,7 @@ import downloadIcon from './assets/downloadIcon.svg';
 import uploadIcon from './assets/uploadIcon.svg';
 import styles from './SettingsMenu.module.css';
 
-import { Button } from 'components/button';
 import { Setting } from './components/setting';
-import { ToggleSwitch } from 'components/toggle-switch/ToggleSwitch';
 
 interface Props {
   readonly settings: Settings;
@@ -53,7 +52,8 @@ export const SettingsMenu = ({ settings, setSettings, podcasts, setPodcasts }: P
 
   return (
     <>
-      <Button
+      <button
+        className={styles.settingsMenuButton}
         onClick={() => setMenuOpen(prev => !prev)}
       >
         <img
@@ -61,7 +61,7 @@ export const SettingsMenu = ({ settings, setSettings, podcasts, setPodcasts }: P
           alt='Settings Menu'
           className={styles.settingsMenuIcon}
         />
-      </Button>
+      </button>
 
       <ul
         className={`
@@ -77,6 +77,14 @@ export const SettingsMenu = ({ settings, setSettings, podcasts, setPodcasts }: P
             className={styles.colorSchemeValue}
           >
             <ToggleSwitch
+              fontSize='1.125rem'
+              width='auto'
+              borderRadius='var(--borderRadius)'
+              background='var(--background'
+              knobColors={{
+                off: 'var(--buttonFocusBackground)',
+                on: 'var(--accentColor)',
+              }}
               text={settings.colorScheme}
               toggled={settings.colorScheme === 'dark'}
               onClick={() => {
@@ -102,7 +110,10 @@ export const SettingsMenu = ({ settings, setSettings, podcasts, setPodcasts }: P
             className={styles.saveLoadPodcasts}
           >
             <Button
-              customStyles={styles.saveButton}
+              fontSize='var(--saveLoadButtonFontSize)'
+              variant='accent'
+              color='var(--accentColor)'
+              borderRadius='var(--borderRadius)'
               download={{
                 name: 'Podcasts',
                 url: serializedPodcasts,
@@ -118,7 +129,10 @@ export const SettingsMenu = ({ settings, setSettings, podcasts, setPodcasts }: P
             </Button>
 
             <Button
-              customStyles={styles.loadButton}
+              fontSize='var(--saveLoadButtonFontSize)'
+              variant='accent'
+              color='var(--accentColor)'
+              borderRadius='var(--borderRadius)'
               onClick={() => {
                 uploadRef.current?.click();
               }}
@@ -128,6 +142,7 @@ export const SettingsMenu = ({ settings, setSettings, podcasts, setPodcasts }: P
                 alt='Load'
                 className={styles.saveLoadButtonIcon}
               />
+
               <input
                 type='file'
                 style={{

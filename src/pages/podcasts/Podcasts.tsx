@@ -1,6 +1,7 @@
 import type { Dispatch, SetStateAction } from 'react';
 import { useState } from 'react';
 import toast from 'react-hot-toast'; 
+import { Button } from '@android789515/gummy-ui';
 
 import type { EpisodeInfo } from 'pages/episodes';
 import { urlPattern, fetchPodcast } from './util/io';
@@ -12,7 +13,6 @@ import { Podcast } from './components/podcast';
 import { SearchBar } from 'components/search-bar';
 import { AddPodcastButton } from '../../components/add-podcast-button';
 import { Page } from 'components/page';
-import { Button } from 'components/button';
 
 export interface PodcastInfo {
   readonly id: string;
@@ -88,20 +88,23 @@ export const Podcasts = ({ podcasts, setPodcasts, setCurrentPodcast }: Props) =>
             className={styles.buttons}
           >
             <Button
-              customStyles={styles.selectButton}
+              fontSize='var(--podcastButtonsFontSize)'
+              color='var(--accentColor)'
+              borderRadius='var(--borderRadius)'
+              variant='filled'
               onClick={() => setSelectMode(prev => !prev)}
             >
               Select
             </Button>
 
-            <Button
-              customStyles={`
-                ${styles.deleteButton}
-                ${selectMode && styles.deleteButtonShown}
-              `}
-              onClick={() => {
+            {selectMode && (
+              <Button
+                fontSize='var(--podcastButtonsFontSize)'
+                borderRadius='var(--borderRadius)'
+                variant='danger'
+                onClick={() => {
                   setPodcasts(prevPodcasts => {
-                    const updatedPodcasts = [...prevPodcasts].filter(podcast => {
+                    const updatedPodcasts = [ ...prevPodcasts ].filter(podcast => {
                       return !selectedPodcasts.includes(podcast.id);
                     });
 
@@ -111,10 +114,11 @@ export const Podcasts = ({ podcasts, setPodcasts, setCurrentPodcast }: Props) =>
                   });
 
                   setSelectMode(false);
-              }}
-            >
-              Delete
-            </Button>
+                }}
+              >
+                Delete
+              </Button>
+            )}
           </section>
 
           <List

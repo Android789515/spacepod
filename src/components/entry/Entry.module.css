@@ -11,8 +11,13 @@
 
   width: 100%;
 
+  background: none;
   padding: .5em .75em;
+
+  border: none;
   border-radius: var(--borderRadius);
+
+  margin: 0;
 }
 
 .entry:focus,

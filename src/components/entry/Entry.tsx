@@ -3,7 +3,6 @@ import { useState } from 'react';
 import defaultCoverArt from 'assets/defaultCoverArt.svg';
 import styles from './Entry.module.css';
 
-import { Button } from 'components/button';
 import type { HTMLAttributes } from 'react';
 
 interface Props extends HTMLAttributes<HTMLButtonElement> {
@@ -18,9 +17,9 @@ export const Entry = ({ title, coverArt, authors, selectMode, selected, ...rest 
   const [ isCoverArtLoaded, setIsCoverArtLoaded ] = useState(false);
 
   return (
-    <Button
+    <button
       {...rest}
-      customStyles={`
+      className={`
         ${styles.entry}
         ${selectMode && styles.selectMode}
       `}
@@ -55,7 +54,7 @@ export const Entry = ({ title, coverArt, authors, selectMode, selected, ...rest 
           {authors.join(', ')}
         </p>
       </div>
-    </Button>
+    </button>
   );
 };
 

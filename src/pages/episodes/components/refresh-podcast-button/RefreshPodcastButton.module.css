@@ -1,16 +1,5 @@
-.refreshButton.refreshButton {
-  color: #fff;
-
-  grid-row: 3;
-
-  background: var(--accentColor);
-  padding: .4em .8em;
-
-  border-radius: var(--borderRadius);
-}
-
 @media (min-width: 35.875em) {
-  .refreshButton.refreshButton {
+  .button {
     grid-row: revert;
   }
 }

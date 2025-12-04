@@ -7,6 +7,7 @@ import { RouterProvider } from 'react-router5';
 
 import './index.css';
 import './default.css';
+import '../node_modules/@android789515/gummy-ui/dist/gummy-ui.css';
 
 import { App } from './App';
 

@@ -44,7 +44,12 @@
   z-index: 1;
 
   background: #333333bb;
+  padding: 0;
+
+  border: none;
   border-radius: var(--borderRadius);
+
+  margin: 0;
 }
 
 .playbackButton:focus,
@@ -74,6 +79,10 @@
   max-width: 100%;
 
   margin: 0;
+}
+
+.controlsPanel input[type='range'] {
+  align-self: center;
 }
 
 @media (min-width: 28.125em) {

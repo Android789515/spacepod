@@ -20,23 +20,12 @@
   margin: 0;
 }
 
-.closeButton {
+.closeButton.closeButton {
   padding: .1em;
-
-  border-radius: var(--borderRadius);
 }
 
 :root[style*='color-scheme: dark;'] .closeButtonIcon {
   filter: invert(1);
-}
-
-.closeButton.closeButton:focus,
-.closeButton.closeButton:hover {
-  background: var(--buttonFocusBackgroundOnWidget);
-}
-
-.closeButton.closeButton:active {
-  background: var(--buttonActiveBackgroundOnWidget);
 }
 
 .input {

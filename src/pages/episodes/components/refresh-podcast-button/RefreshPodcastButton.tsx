@@ -1,12 +1,11 @@
 import { type Dispatch, type SetStateAction } from 'react';
 import toast from 'react-hot-toast';
+import { Button } from '@android789515/gummy-ui';
 
 import { type PodcastInfo } from 'pages/podcasts';
 import { fetchPodcast } from 'pages/podcasts/util/io';
 
 import styles from './RefreshPodcastButton.module.css';
-
-import { Button } from 'components/button';
 
 interface Props {
   readonly podcastURL: string;
@@ -17,7 +16,11 @@ interface Props {
 export const RefreshPodcastButton = ({ podcastURL, setPodcasts, setCurrentPodcast }: Props) => {
   return (
     <Button
-      customStyles={styles.refreshButton}
+      fontSize='1.1rem'
+      variant='filled'
+      color='var(--accentColor)'
+      borderRadius='var(--borderRadius)'
+      className={styles.button}
       onClick={() => {
         const pendingPodcast = fetchPodcast(podcastURL);
 

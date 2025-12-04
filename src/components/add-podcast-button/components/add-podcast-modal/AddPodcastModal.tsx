@@ -1,9 +1,8 @@
 import { useRef, type HTMLAttributes } from 'react';
+import { Button } from '@android789515/gummy-ui';
 
 import closeIcon from './assets/closeIcon.svg';
 import styles from './AddPodcastModal.module.css';
-
-import { Button } from 'components/button';
 
 interface Props extends HTMLAttributes<HTMLDialogElement> {
   readonly show: boolean;
@@ -42,7 +41,10 @@ export const AddPodcastModal = ({ show, setShow, podcastsURL, setPodcastsURL, ..
         </label>
 
         <Button
-          customStyles={styles.closeButton}
+          className={styles.closeButton}
+          variant='default'
+          fontSize='1rem'
+          borderRadius='var(--borderRadius)'
           onClick={() => setShow(false)}
         >
           <img

@@ -1,3 +1,12 @@
+.settingsMenuButton {
+  background: none;
+  padding: 0;
+
+  border: none;
+
+  margin: 0;
+}
+
 .settingsMenuIcon {
   aspect-ratio: 1 / 1;
 
@@ -39,49 +48,29 @@
 }
 
 .saveLoadPodcasts {
+  --saveLoadButtonFontSize: 1.125rem;
+  font-size: var(--saveLoadButtonFontSize);
+
   display: grid;
   row-gap: .4em;
 }
 
-.saveButton,
-.loadButton {
-  color: var(--textColor);
-
+.saveLoadPodcasts button,
+.saveLoadPodcasts a {
   display: grid;
   grid-template-columns: 1.1em auto;
   align-items: center;
-
-  background: var(--buttonActiveBackground);
-  padding: .2em .4em;
-
-  border-radius: calc(var(--borderRadius) / 1.5);
-}
-
-.saveButton:focus,
-.saveButton:hover,
-.loadButton:focus,
-.loadButton:hover {
-  color: #fff;
-
-  background: var(--accentColor);
-}
-
-.saveButton:active,
-.loadButton:active {
-  color: #fff;
-
-  background: var(--buttonActiveBackground);
 }
 
 .saveLoadButtonIcon {
   filter: var(--icons);
 }
 
-.saveButton:focus .saveLoadButtonIcon,
-.saveButton:hover .saveLoadButtonIcon,
-.saveButton:active .saveLoadButtonIcon,
-.loadButton:focus .saveLoadButtonIcon,
-.loadButton:hover .saveLoadButtonIcon,
-.loadButton:active .saveLoadButtonIcon {
+.saveLoadPodcasts button:focus .saveLoadButtonIcon,
+.saveLoadPodcasts button:hover .saveLoadButtonIcon,
+.saveLoadPodcasts button:active .saveLoadButtonIcon,
+.saveLoadPodcasts a:focus .saveLoadButtonIcon,
+.saveLoadPodcasts a:hover .saveLoadButtonIcon,
+.saveLoadPodcasts a:active .saveLoadButtonIcon {
   filter: invert(1);
 }

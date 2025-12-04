@@ -1,4 +1,6 @@
 .page {
+  --errorBoundaryButtonFontSize: 1.1rem;
+
   display: grid;
   justify-content: center;
   align-items: center;
@@ -36,25 +38,16 @@
 }
 
 .button {
-  font-size: 1.1rem;
-  color: #fff;
-
   justify-self: center;
-
-  background: var(--accentColor);
-  padding: .2em .4em;
-
-  border: none;
-  border-radius: var(--borderRadius);
 }
 
 @media (min-width: 28.125em) {
-  .title {
-    font-size: 2rem;
+  .page {
+    --errorBoundaryButtonFontSize: 1.2rem;
   }
 
-  .button {
-    font-size: 1.2rem;
+  .title {
+    font-size: 2rem;
   }
 }
 

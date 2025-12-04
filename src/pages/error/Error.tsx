@@ -1,7 +1,7 @@
 import type { FallbackProps } from 'react-error-boundary';
+import { Button } from '@android789515/gummy-ui';
 
 import styles from './Error.module.css';
-import { Button } from 'components/button';
 
 export const Error = ({ error, resetErrorBoundary }: FallbackProps) => {
   return (
@@ -25,6 +25,10 @@ export const Error = ({ error, resetErrorBoundary }: FallbackProps) => {
 
         <Button
           className={styles.button}
+          fontSize='var(--errorBoundaryButtonFontSize)'
+          variant='filled'
+          color='var(--accentColor)'
+          borderRadius='var(--borderRadius)'
           onClick={resetErrorBoundary}
         >
           Go Back
