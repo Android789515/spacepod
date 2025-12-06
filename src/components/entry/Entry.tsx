@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Button } from '@android789515/gummy-ui';
 
 import defaultCoverArt from 'assets/defaultCoverArt.svg';
 import styles from './Entry.module.css';
@@ -17,7 +18,10 @@ export const Entry = ({ title, coverArt, authors, selectMode, selected, ...rest 
   const [ isCoverArtLoaded, setIsCoverArtLoaded ] = useState(false);
 
   return (
-    <button
+    // @ts-ignore
+    <Button
+      fontSize='1rem'
+      variant='accent'
       {...rest}
       className={`
         ${styles.entry}
@@ -54,7 +58,7 @@ export const Entry = ({ title, coverArt, authors, selectMode, selected, ...rest 
           {authors.join(', ')}
         </p>
       </div>
-    </button>
+    </Button>
   );
 };
 

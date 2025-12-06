@@ -4,6 +4,8 @@
 }
 
 .entry.entry {
+  color: light-dark(#333, #efefef);
+
   display: grid;
   grid-template-columns: 3.5em auto;
   column-gap: 1em;
@@ -20,13 +22,9 @@
   margin: 0;
 }
 
-.entry:focus,
-.entry:hover {
-  background: var(--buttonFocusBackground);
-}
-
-.entry:active {
-  background: var(--buttonActiveBackground);
+.entry.entry:focus,
+.entry.entry:hover {
+  background: light-dark(#ebeaf3, #4d4c4d);
 }
 
 .selectMode.selectMode {
