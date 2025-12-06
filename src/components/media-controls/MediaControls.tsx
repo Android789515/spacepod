@@ -19,7 +19,6 @@ interface Props {
 }
 
 export const MediaControls = ({ episodeInfo, duration, currentTime, setCurrentTime, playback, setPlayback }: Props) => {
-  console.log(timeStampToSeconds(duration), timeStampToSeconds(currentTime));
   return (
     <section
       className={styles.controlsArea}
