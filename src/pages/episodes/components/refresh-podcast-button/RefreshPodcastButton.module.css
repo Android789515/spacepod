@@ -1,3 +1,7 @@
+.button {
+  grid-row: 3;
+}
+
 @media (min-width: 35.875em) {
   .button {
     grid-row: revert;
