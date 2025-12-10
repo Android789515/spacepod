@@ -59,7 +59,7 @@ export const MediaControls = ({ episodeInfo, duration, currentTime, setCurrentTi
           fullValue={timeStampToSeconds(duration)}
           currentValue={timeStampToSeconds(currentTime)}
           color='var(--accentColor)'
-          borderRadius='.35em'
+          borderRadius='.45em'
           onChange={value => {
             setCurrentTime(toTimeStamp(value));
           }}
