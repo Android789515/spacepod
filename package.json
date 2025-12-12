@@ -1,7 +1,7 @@
 {
   "name": "spacepod-client",
   "private": true,
-  "version": "0.3.0",
+  "version": "0.3.1",
   "type": "module",
   "scripts": {
     "dev": "bun run build && cd server && echo \"Now serving at http://localhost:8080\" && cargo run && cd ..",
