@@ -1,7 +1,7 @@
 {
   "name": "spacepod-client",
   "private": true,
-  "version": "0.3.1",
+  "version": "0.3.2",
   "type": "module",
   "scripts": {
     "dev": "bun run build && cd server && echo \"Now serving at http://localhost:8080\" && cargo run && cd ..",
@@ -10,7 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@android789515/gummy-ui": "^0.7.1",
+    "@android789515/gummy-ui": "^0.7.2",
     "fuse.js": "^7.1.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
