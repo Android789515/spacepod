@@ -67,35 +67,35 @@ export const App = () => {
           setCurrentPodcast={setCurrentPodcast}
           setEpisodePlaying={episode => setEpisodePlaying(episode)}
         />
-      </ErrorBoundary>
 
-      {episodePlaying && (
-        <Player
-          episodePlaying={episodePlaying}
-          render={({ episodeInfo, playerInfo, setPlayerInfo }) => {
-            return (
-              <MediaControls
-                episodeInfo={episodeInfo}
-                duration={playerInfo.duration}
-                currentTime={playerInfo.currentTime}
-                playback={playerInfo.playback}
-                setPlayback={playback => setPlayerInfo(prev => {
-                  return {
-                    ...prev,
-                    playback,
-                  };
-                })}
-                setCurrentTime={timeStamp => setPlayerInfo(prev => {
-                  return {
-                    ...prev,
-                    currentTime: timeStamp,
-                  };
-                })}
-              />
-            );
-          }}
-        />
-      )}
+        {episodePlaying && (
+          <Player
+            episodePlaying={episodePlaying}
+            render={({ episodeInfo, playerInfo, setPlayerInfo }) => {
+              return (
+                <MediaControls
+                  episodeInfo={episodeInfo}
+                  duration={playerInfo.duration}
+                  currentTime={playerInfo.currentTime}
+                  playback={playerInfo.playback}
+                  setPlayback={playback => setPlayerInfo(prev => {
+                    return {
+                      ...prev,
+                      playback,
+                    };
+                  })}
+                  setCurrentTime={timeStamp => setPlayerInfo(prev => {
+                    return {
+                      ...prev,
+                      currentTime: timeStamp,
+                    };
+                  })}
+                />
+              );
+            }}
+          />
+        )}
+      </ErrorBoundary>
 
       <Toaster
         toastOptions={{
