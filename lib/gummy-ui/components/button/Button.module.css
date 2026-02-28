@@ -10,7 +10,7 @@
 
   padding: .25em .5em;
 
-  --buttonBackground: solid light-dark(#505060ad, #4e4e61ad) 2px;
+  --buttonBackground: solid light-dark(#505060ad, #18181aad) 2px;
 
   border-bottom: var(--buttonBackground);
   border-left: var(--buttonBackground);
