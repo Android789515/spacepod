@@ -69,6 +69,18 @@
   transition: scale 250ms var(--bounceInAnimation);
 }
 
+@media (hover: none) {
+  /* Moz Range and Webkit Range rules must be separated to work. */
+
+  .barSlider::-moz-range-thumb {
+    scale: 1;
+  }
+
+  .barSlider::-webkit-slider-thumb {
+    scale: 1;
+  }
+}
+
 .barSlider:active.barSlider::-moz-range-thumb {
   scale: .85;
 }
