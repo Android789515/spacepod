@@ -1,9 +1,17 @@
 import type { FallbackProps } from 'react-error-boundary';
-import { Button } from '@android789515/gummy-ui';
+import { Button } from 'lib/gummy-ui';
 
 import styles from './Error.module.css';
 
-export const Error = ({ error, resetErrorBoundary }: FallbackProps) => {
+interface TypedFallbackProps extends FallbackProps {
+  readonly error: {
+    readonly toString: () => string;
+  };
+}
+
+export const Error = (fallbackProps: FallbackProps) => {
+  const { error, resetErrorBoundary } = fallbackProps as TypedFallbackProps;
+
   return (
     <div
       className={styles.page}
