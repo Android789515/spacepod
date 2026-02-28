@@ -13,9 +13,12 @@ interface Props {
 export const BarSlider = ({ fullValue, currentValue, onChange, color, borderRadius }: Props) => {
   const sliderRef = useRef<HTMLInputElement | null>(null);
 
+  const borderRadiusWithFallback = borderRadius || 'var(--borderRadius)';
+
   useEffect(() => {
     if (color && sliderRef.current) {
       document.documentElement.style.setProperty('--rangeSliderThumbColor', color);
+      document.documentElement.style.setProperty('--safariBorderRadius', borderRadiusWithFallback)
     }
   }, [ color ]);
 
@@ -40,7 +43,7 @@ export const BarSlider = ({ fullValue, currentValue, onChange, color, borderRadi
         background: fullValue
           ? `linear-gradient(to right, ${color} ${currentValuePercent}%, ${trackBackground} ${currentValuePercent}%)`
           : trackBackground,
-        borderRadius: borderRadius || 'var(--borderRadius)',
+        borderRadius: borderRadiusWithFallback,
       }}
       ref={sliderRef}
     />

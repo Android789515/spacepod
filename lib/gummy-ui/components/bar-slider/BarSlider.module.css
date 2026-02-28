@@ -36,12 +36,14 @@
   appearance: none;
   -webkit-appearance: none;
 
-  width: var(--thumbSize);
-  height: var(--thumbSize);
+  --safariScale: 1.6;
+  width: calc(var(--thumbSize) * var(--safariScale));
+  height: calc(var(--thumbSize) * var(--safariScale));
 
   background: light-dark(var(--borderColor), var(--rangeSliderThumbColor));
 
   border: solid var(--borderThickness) light-dark(var(--rangeSliderThumbColor), var(--borderColor));
+  border-radius: var(--safariBorderRadius);
 
   scale: 0;
 
