@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from 'react';
-import { Button } from '@android789515/gummy-ui';
+import { Button } from 'lib/gummy-ui';
 
 import addIcon from './assets/addIcon.svg';
 import styles from './AddPodcastButton.module.css';

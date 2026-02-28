@@ -24,6 +24,9 @@
     "noUncheckedSideEffectImports": true,
     "baseUrl": "./src",
     "paths": {
+      "lib/*": [
+        "../lib/*"
+      ],
       "hooks/*": [
         "hooks/*"
       ],

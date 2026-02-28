@@ -1,0 +1,85 @@
+.button {
+  border: none;
+}
+
+.button {
+  font: inherit;
+  color: inherit;
+
+  cursor: pointer;
+
+  padding: .25em .5em;
+
+  --buttonBackground: solid light-dark(#505060ad, #4e4e61ad) 2px;
+
+  border-bottom: var(--buttonBackground);
+  border-left: var(--buttonBackground);
+
+  transition: translate 250ms, border-width 50ms, scale 250ms;
+}
+
+.linkButton {
+  font: inherit;
+  text-decoration: none;
+  text-align: center;
+  color: inherit;
+
+  display: inline-block;
+}
+
+.default,
+.default.disabled:focus,
+.default.disabled:hover {
+  color: light-dark(#333, #efefef);
+
+  background: light-dark(#eaeaea, #464646);
+}
+
+.default:focus,
+.default:hover {
+  background: light-dark(#d4d4d4, #5d5c5c);
+}
+
+.filled {
+  color: #efefef;
+}
+
+.accent,
+.accent.disabled:focus,
+.accent.disabled:hover {
+  color: light-dark(#333, #efefef);
+
+  background: light-dark(#eaeaea, #464646);
+}
+
+.accent:focus,
+.accent:hover {
+  color: #fff;
+
+  background: var(--accentButtonColor);
+}
+
+.danger {
+  color: #fff;
+
+  background: #ff0000;
+}
+
+.button:active {
+  border-width: 0;
+
+  translate: 0 .125rem;
+}
+
+.disabled {
+  opacity: .5;
+
+  cursor: not-allowed;
+}
+
+.disabled:active {
+  border-bottom: var(--buttonBackground);
+  border-left: var(--buttonBackground);
+
+  translate: 0 0;
+}

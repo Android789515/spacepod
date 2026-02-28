@@ -5,7 +5,11 @@
   "type": "module",
   "watch": {
     "start": {
-      "patterns": ["src", "server", "test"],
+      "patterns": [
+        "src",
+        "server",
+        "test"
+      ],
       "extensions": "ts,tsx,css,rs,toml,json,js"
     }
   },
@@ -17,7 +21,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@android789515/gummy-ui": "git+https://codeberg.org/android789515/gummy-ui.git",
     "fuse.js": "^7.1.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",

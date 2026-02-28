@@ -1,4 +1,4 @@
-import { BarSlider } from '@android789515/gummy-ui';
+import { BarSlider } from 'lib/gummy-ui';
 
 import type { EpisodeInfo } from 'pages/episodes';
 import type { TimeStamp } from 'pages/podcasts/util';

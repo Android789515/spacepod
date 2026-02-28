@@ -1,6 +1,6 @@
 import type { Dispatch, SetStateAction } from 'react';
 import { useEffect, useRef, useState } from 'react';
-import { ToggleSwitch, Button } from '@android789515/gummy-ui';
+import { ToggleSwitch, Button } from 'lib/gummy-ui';
 
 import type { Settings } from 'App';
 import type { PodcastInfo } from 'pages/podcasts';

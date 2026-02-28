@@ -1,0 +1,68 @@
+import { Canvas, Meta } from '@storybook/addon-docs/blocks';
+
+import * as List from './List.stories.tsx';
+
+<Meta of={List} title='List' />
+
+# List
+
+List component with different props.
+
+#### Example
+
+<Canvas of={List.Horizontal} />
+
+<Canvas of={List.Vertical} />
+
+## Usage
+
+```ts
+import { List, Button } from 'gummy-ui';
+
+export const Component = () => {
+  const items = [
+    {
+      id: '1',
+      name: 'Anderson',
+      occupation: 'NPC',
+    },
+    {
+      id: '2',
+      name: 'Lilly',
+      occupation: 'AI',
+    },
+    {
+      id: '3',
+      name: '0101la01m',
+      occupation: 'Human',
+    },
+  ];
+
+  return (
+    <List
+      data={items}
+      renderItem={item => {
+        return (
+          <Button
+            fontSize='1rem'
+            variant='default'
+            borderRadius='.25em'
+          >
+            {item.name} is {item.occupation}
+          </Button>
+        );
+      }}
+    />
+  );
+};
+```
+
+#### Arguments
+
+***Data must have unique IDs in order to be rendered with a list!***
+
+- **data** _`ItemType[]`_ - Array of items of type Type.
+- **orientation** _`'horizontal' | 'vertical'`_ - Orientation of the list.
+- **padding?** _`string`_ - Optional padding around the list.
+- **spacing?** _`string`_ - Optional list item spacing (row-gap, or column-gap) with units.
+- **renderItem** _`item: ItemType => ReactNode`_ - Procedure to render each item.
