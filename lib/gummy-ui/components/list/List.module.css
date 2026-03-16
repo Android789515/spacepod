@@ -1,0 +1,19 @@
+.list {
+  display: grid;
+
+  list-style: none;
+
+  padding: 0;
+
+  margin: 0;
+}
+
+.horizontal {
+  grid-auto-columns: max-content;
+  grid-auto-flow: column;
+  column-gap: 1em;
+}
+
+.vertical {
+  row-gap: 1em;
+}

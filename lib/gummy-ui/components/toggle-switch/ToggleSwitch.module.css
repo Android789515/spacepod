@@ -1,0 +1,56 @@
+.toggleSwitch {
+  font: inherit;
+  color: light-dark(#333, #efefef);
+
+  display: grid;
+  align-items: center;
+
+  cursor: pointer;
+
+  padding: .25em;
+
+  border: none;
+}
+
+.toggleSwitch > * {
+  grid-row: 1;
+  grid-column: 1;
+}
+
+.toggleSwitchText {
+  font: inherit;
+  font-weight: 700;
+  text-align: right;
+
+  pointer-events: none;
+
+  margin-right: .25em;
+}
+
+:root[style*='color-scheme: dark;'] .toggleSwitchText:has(+ .knobToggled) {
+  opacity: .4;
+}
+
+.knob {
+  display: block;
+
+  aspect-ratio: 1 / 1;
+
+  width: 1em;
+
+  margin-left: 2px;
+
+  transform: scale(1);
+  transition: margin-left 250ms, transform 250ms;
+}
+
+.toggleSwitch:active .knob {
+  transform: scale(.8);
+}
+
+.toggleSwitchText:has(+ .knobToggled) {
+  text-align: left;
+
+  margin-right: 0;
+  margin-left: .25em;
+}

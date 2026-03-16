@@ -1,0 +1,90 @@
+.barSlider {
+  --borderColor: #fff;
+  --bounceInAnimation: cubic-bezier(.26, .53, .74, 1.48);
+
+  --thumbSize: .9em;
+  --borderThickness: .32em;
+
+  appearance: none;
+
+  cursor: pointer;
+
+  height: .4em;
+
+  transition: height 250ms var(--bounceInAnimation);
+}
+
+/* Moz Range and Webkit Range rules must be separated to work. */
+
+.barSlider::-moz-range-thumb {
+  appearance: none;
+
+  width: var(--thumbSize);
+  height: var(--thumbSize);
+
+  background: light-dark(var(--borderColor), var(--rangeSliderThumbColor));
+
+  border: solid var(--borderThickness) light-dark(var(--rangeSliderThumbColor), var(--borderColor));
+  border-radius: inherit;
+
+  scale: 0;
+
+  transition: scale 0ms;
+}
+
+.barSlider::-webkit-slider-thumb {
+  appearance: none;
+  -webkit-appearance: none;
+
+  --safariScale: 1.6;
+  width: calc(var(--thumbSize) * var(--safariScale));
+  height: calc(var(--thumbSize) * var(--safariScale));
+
+  background: light-dark(var(--borderColor), var(--rangeSliderThumbColor));
+
+  border: solid var(--borderThickness) light-dark(var(--rangeSliderThumbColor), var(--borderColor));
+  border-radius: var(--safariBorderRadius);
+
+  scale: 0;
+
+  transition: scale 0ms;
+}
+
+.barSlider:focus,
+.barSlider:hover {
+  height: .5em;
+}
+
+.barSlider:focus.barSlider::-moz-range-thumb,
+.barSlider:hover.barSlider::-moz-range-thumb {
+  scale: 1;
+
+  transition: scale 250ms var(--bounceInAnimation);
+}
+
+.barSlider:focus.barSlider::-webkit-slider-thumb,
+.barSlider:hover.barSlider::-webkit-slider-thumb {
+  scale: 1;
+
+  transition: scale 250ms var(--bounceInAnimation);
+}
+
+@media (hover: none) {
+  /* Moz Range and Webkit Range rules must be separated to work. */
+
+  .barSlider::-moz-range-thumb {
+    scale: 1;
+  }
+
+  .barSlider::-webkit-slider-thumb {
+    scale: 1;
+  }
+}
+
+.barSlider:active.barSlider::-moz-range-thumb {
+  scale: .85;
+}
+
+.barSlider:active.barSlider::-webkit-slider-thumb {
+  scale: .85;
+}

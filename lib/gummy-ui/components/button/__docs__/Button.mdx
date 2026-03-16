@@ -1,0 +1,43 @@
+import { Canvas, Meta } from '@storybook/addon-docs/blocks';
+
+import * as Button from './Button.stories.tsx';
+
+<Meta of={Button} title='Button' />
+
+# Button
+
+Button component with different props.
+
+#### Example
+
+<Canvas of={Button.AllVariants} />
+
+## Usage
+
+```ts
+import { Button } from 'gummy-ui';
+
+export const Component = () => {
+  return (
+    <Button
+      fontSize='1rem'
+      variant='default'
+      borderRadius='.25em'
+    >
+      Default
+    </Button>
+  );
+};
+```
+
+#### Arguments
+
+- **fontSize** _`string`_ Font size of the button.
+- **variant** _`'default' | 'filled' | 'accent' | 'danger'`_ - Variant for the button.
+- **color?** _`string`_ - An optional color for the accent variant.
+- **fullWidth?** _`boolean`_ - A flag indicating if the button should be full width.
+- **disabled?** _`boolean`_ - A flag indicating whether the button is disabled.
+- **borderRadius?** _`string`_ - An optional border radius (defaults to var(--borderRadius)).
+- **download?** _`{ readonly name: string; readonly url: string; }`_ - Optional file for the button to allow downloading.
+- **children** _`ReactNode`_ - Content of the button.
+- **onClick?** _`() => void`_ Click handler.

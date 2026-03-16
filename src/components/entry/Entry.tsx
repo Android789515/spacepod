@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button } from '@android789515/gummy-ui';
+import { Button } from 'lib/gummy-ui';
 
 import defaultCoverArt from 'assets/defaultCoverArt.svg';
 import styles from './Entry.module.css';

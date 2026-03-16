@@ -1,16 +1,27 @@
 {
   "name": "spacepod-client",
   "private": true,
-  "version": "0.3.2",
+  "version": "0.3.4",
   "type": "module",
+  "watch": {
+    "start": {
+      "patterns": [
+        "src",
+        "lib",
+        "server",
+        "test"
+      ],
+      "extensions": "ts,tsx,css,rs,toml,json,js"
+    }
+  },
   "scripts": {
-    "dev": "bun run build && cd server && echo \"Now serving at http://localhost:8080\" && cargo run && cd ..",
+    "start": "npm run build && cd server && echo \"Now serving at http://localhost:8080\" && cargo run && cd ..",
+    "dev": "npm-watch",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview"
   },
   "dependencies": {
-    "@android789515/gummy-ui": "git+https://codeberg.org/android789515/gummy-ui.git",
     "fuse.js": "^7.1.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
@@ -30,6 +41,7 @@
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.4.24",
     "globals": "^16.5.0",
+    "npm-watch": "^0.13.0",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.48.1",
     "uuid": "^13.0.0",

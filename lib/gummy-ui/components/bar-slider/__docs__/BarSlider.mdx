@@ -1,0 +1,43 @@
+import { Canvas, Meta } from '@storybook/addon-docs/blocks';
+
+import * as BarSlider from './BarSlider.stories.tsx';
+
+<Meta of={BarSlider} title='BarSlider' />
+
+# BarSlider
+
+BarSlider component with different props.
+
+#### Example
+
+<Canvas of={BarSlider.PartiallyFull} />
+
+## Usage
+
+```ts
+import { useState } from 'react';
+
+import { BarSlider } from 'gummy-ui';
+
+export const Component = () => {
+  const [ sliderValue, setSliderValue ] = useState(45);
+
+  return (
+      <BarSlider
+        fullValue={100}
+        currentValue={sliderValue}
+        onChange={newValue => setSliderValue(newValue)}
+        color='#e30fb2'
+        borderRadius='.25em'
+      />
+  );
+};
+```
+
+#### Arguments
+
+- **fullValue** _`number`_ - The maximum value the bar slider can have.
+- **currentValue** _`number`_ - The current value of the bar slider.
+- **onChange** _`number` => `void`_ - The callback which runs when the bar slider value is updated and is passed the new value.
+- **color?** _`string`_ - An optional color for the bar slider.
+- **borderRadius?** _`string`_ - An optional border radius (defaults to var(--borderRadius)).

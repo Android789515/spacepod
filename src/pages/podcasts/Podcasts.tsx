@@ -1,7 +1,7 @@
 import type { Dispatch, SetStateAction } from 'react';
 import { useState } from 'react';
-import toast from 'react-hot-toast'; 
-import { Button } from '@android789515/gummy-ui';
+import toast from 'react-hot-toast';
+import { Button } from 'lib/gummy-ui';
 
 import type { EpisodeInfo } from 'pages/episodes';
 import { urlPattern, fetchPodcast } from './util/io';
@@ -140,7 +140,7 @@ export const Podcasts = ({ podcasts, setPodcasts, setCurrentPodcast }: Props) =>
                         if (isSelected) {
                           return prevPodcasts.filter(id => id !== podcastInfo.id);
                         } else {
-                          return [...prevPodcasts, podcastInfo.id];
+                          return [ ...prevPodcasts, podcastInfo.id ];
                         }
                       });
                     } else {

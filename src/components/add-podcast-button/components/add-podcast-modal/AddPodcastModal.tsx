@@ -1,5 +1,5 @@
 import { useRef, type HTMLAttributes } from 'react';
-import { Button } from '@android789515/gummy-ui';
+import { Button } from 'lib/gummy-ui';
 
 import closeIcon from './assets/closeIcon.svg';
 import styles from './AddPodcastModal.module.css';

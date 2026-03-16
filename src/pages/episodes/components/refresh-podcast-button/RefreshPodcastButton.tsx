@@ -1,6 +1,6 @@
 import { type Dispatch, type SetStateAction } from 'react';
 import toast from 'react-hot-toast';
-import { Button } from '@android789515/gummy-ui';
+import { Button } from 'lib/gummy-ui';
 
 import { type PodcastInfo } from 'pages/podcasts';
 import { fetchPodcast } from 'pages/podcasts/util/io';
